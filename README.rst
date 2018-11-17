@@ -1,0 +1,35 @@
+===========
+Python Helper
+===========
+
+Python helper starter provides an easy way to start a git project specifically python projects from the command line. You might find
+it most useful for creating all need files, venvs, and more. Typical usage
+often looks like this::
+
+    py-helper create
+
+This command will start creating your python and git ready project.
+
+Paragraphs are separated by blank lines. *Italics*, **bold**,
+and ``monospace`` look like this.
+
+
+A Section
+=========
+
+Lists look like this:
+
+* First
+
+* Second. Can be multiple lines
+  but must be indented properly.
+
+Authors
+-------------
+
+Numbered lists look like you'd expect:
+
+1. Rafael Cenzano
+
+Urls are http://like.this and links can be
+written `like this <http://www.example.com/foo/bar>`_.
