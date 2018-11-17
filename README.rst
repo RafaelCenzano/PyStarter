@@ -31,4 +31,4 @@ Numbered lists look like you'd expect:
 
 1. Rafael Cenzano
 
-Check out the PyPi page **`HERE<http://www.example.com/foo/bar>`_**.
+Check out the PyPi page **`HERE <http://www.example.com/foo/bar>`_**.
