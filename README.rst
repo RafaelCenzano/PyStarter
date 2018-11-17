@@ -10,6 +10,18 @@ often looks like this::
 
 This command will start creating your python and git ready project.
 
+Authors
+=========
+
+Numbered lists look like you'd expect:
+
+1. Rafael Cenzano
+
+Check out the PyPi page `HERE <http://www.example.com/foo/bar>`_.
+
+
+Other helpful rst file stuff that will be removed
+
 Paragraphs are separated by blank lines. *Italics*, **bold**,
 and ``monospace`` look like this.
 
@@ -23,12 +35,3 @@ Lists look like this:
 
 * Second. Can be multiple lines
   but must be indented properly.
-
-Authors
-=========
-
-Numbered lists look like you'd expect:
-
-1. Rafael Cenzano
-
-Check out the PyPi page **`HERE <http://www.example.com/foo/bar>`_**.
