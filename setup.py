@@ -35,7 +35,7 @@ setup(
     # There are some restrictions on what makes a valid project name
     # specification here:
     # https://packaging.python.org/specifications/core-metadata/#name
-    name='py-helper',  # Required
+    name='Pyhelper',  # Required
 
     # Versions complies with PEP 440:
     # https://packaging.python.org/en/latest/single_source_version.html
@@ -62,7 +62,7 @@ setup(
 
     # This field corresponds to the "Home-Page" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
-    url='https://github.com/SavageCoder77/Py-helper',
+    url='https://github.com/SavageCoder77/Pyhelper',
 
     # This should be your name or the name of the organization which owns the
     # project.
@@ -155,6 +155,6 @@ setup(
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
     project_urls={
-        'Bug Reports': 'https://github.com/SavageCoder77/Py-helper/issues',
-        'Source': 'https://github.com/SavageCoder77/Py-helper',
+        'Bug Reports': 'https://github.com/SavageCoder77/Pyhelper/issues',
+        'Source': 'https://github.com/SavageCoder77/Pyhelper',
     },
