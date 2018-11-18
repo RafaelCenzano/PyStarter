@@ -13,8 +13,6 @@ This command will start creating your python and git ready project.
 Authors
 =========
 
-Numbered lists look like you'd expect:
-
 1. Rafael Cenzano
 
 Check out the PyPi page `HERE <http://www.example.com/foo/bar>`_.
