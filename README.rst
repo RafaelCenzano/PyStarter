@@ -15,7 +15,12 @@ Authors
 
 1. Rafael Cenzano
 
-Check out the PyPi page `HERE <http://www.example.com/foo/bar>`_.
+Check out the PyPi page `HERE <https://pypi.org/project/PyStarter/>`_.
+
+Check out the GitHub page `HERE <https://github.com/Savagecoder77/PyStarter>`_.
+
+
+
 
 
 Other helpful rst file stuff that will be removed
