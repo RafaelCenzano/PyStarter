@@ -35,7 +35,7 @@ setup(
     # There are some restrictions on what makes a valid project name
     # specification here:
     # https://packaging.python.org/specifications/core-metadata/#name
-    name='Pyhelper',
+    name='PyStarter',
 
     # Versions complies with PEP 440:
     # https://packaging.python.org/en/latest/single_source_version.html
@@ -56,7 +56,7 @@ setup(
 
     # This field corresponds to the "Home-Page" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
-    url='https://github.com/SavageCoder77/Pyhelper',
+    url='https://github.com/SavageCoder77/PyStarter',
 
     # This should be your name or the name of the organization which owns the
     # project.
@@ -96,7 +96,7 @@ setup(
     # project page. What does your project relate to?
     #
     # Note that this is a string of words separated by whitespace, not a list.
-    keywords='pyhelper git python venv',
+    keywords='pystarter git python venv virtualenv',
 
     # You can just specify package directories manually here if your project is
     # simple. Or you can use find_packages().
@@ -135,7 +135,7 @@ setup(
     # executes the function `main` from this package when invoked:
     entry_points={
         'console_scripts': [
-            'pyhelper-version=pyhelper.command_line:version',
+            'pystarter version=pystarter.command_line:version',
         ],
     },
 
@@ -149,7 +149,7 @@ setup(
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
     project_urls={
-        'Bug Reports': 'https://github.com/SavageCoder77/Pyhelper/issues',
-        'Source': 'https://github.com/SavageCoder77/Pyhelper',
+        'Bug Reports': 'https://github.com/SavageCoder77/PyStarter/issues',
+        'Source': 'https://github.com/SavageCoder77/PyStarter',
     },
     )

@@ -1,12 +1,12 @@
-=============
-Python Helper
-=============
+=========
+PyStarter
+=========
 
-Python helper starter provides an easy way to start a git project specifically python projects from the command line. You might find
+PyStarter starter provides an easy way to start a git project specifically python projects from the command line. You might find
 it most useful for creating all need files, venvs, and more. Typical usage
 often looks like this::
 
-    pyhelper create
+    pystarter create
 
 This command will start creating your python and git ready project.
 
