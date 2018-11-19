@@ -135,7 +135,7 @@ setup(
     # executes the function `main` from this package when invoked:
     entry_points={
         'console_scripts': [
-            'pystarter version=pystarter.command_line:version',
+            'pystarter-version=pystarter.command_line:version',
         ],
     },
 
