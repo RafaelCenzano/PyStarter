@@ -1,5 +1,7 @@
 # Imports
 import sys
 
-def versionFind():
-  sys.version_info
+def versionFind(type='int'):
+    version_tuple = sys.version_info
+    print(version_tuple)
+    print(type)
