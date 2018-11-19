@@ -35,7 +35,7 @@ setup(
     # There are some restrictions on what makes a valid project name
     # specification here:
     # https://packaging.python.org/specifications/core-metadata/#name
-    name='Pyhelper',  # Required
+    name='Pyhelper',
 
     # Versions complies with PEP 440:
     # https://packaging.python.org/en/latest/single_source_version.html
@@ -46,12 +46,6 @@ setup(
     # https://packaging.python.org/specifications/core-metadata/#summary
     description='A program to help you start python and git project files and venvs',
 
-    # This is an optional longer description of your project that represents
-    # the body of text which users will see when they visit PyPI.
-    #
-    # Often, this is the same as your README, so you can just read it in from
-    # that file directly (as we have already done above)
-    #
     # This field corresponds to the "Description" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-optional
     long_description=long_description,
@@ -70,7 +64,7 @@ setup(
 
     # This should be a valid email address corresponding to the author listed
     # above.
-    author_email='savagecoder77@gmail.com',  # Optional
+    author_email='savagecoder77@gmail.com',
 
     # Classifiers help users find your project by categorizing it.
     classifiers=[
@@ -102,7 +96,7 @@ setup(
     # project page. What does your project relate to?
     #
     # Note that this is a string of words separated by whitespace, not a list.
-    keywords='py-helper git project-help python venv',
+    keywords='pyhelper git python venv',
 
     # You can just specify package directories manually here if your project is
     # simple. Or you can use find_packages().
@@ -113,7 +107,7 @@ setup(
     #
     #   py_modules=["my_module"],
     #
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),  # Required
+    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # This field lists other packages that your project depends on to run.
     # Any package you put here will be installed by pip when your project is
@@ -139,11 +133,11 @@ setup(
     #
     # For example, the following would provide a command called `sample` which
     # executes the function `main` from this package when invoked:
-    #entry_points={  # Optional
-    #    'console_scripts': [
-    #        'sample=sample:main',
-    #    ],
-    #},
+    entry_points={
+        'console_scripts': [
+            'pyhelper-version=pyhelper.command_line:version',
+        ],
+    },
 
     # List additional URLs that are relevant to your project as a dict.
     #
@@ -158,3 +152,4 @@ setup(
         'Bug Reports': 'https://github.com/SavageCoder77/Pyhelper/issues',
         'Source': 'https://github.com/SavageCoder77/Pyhelper',
     },
+    )
