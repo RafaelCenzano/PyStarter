@@ -1,4 +1,7 @@
 import pystarter
+import sys
 
-def version():
-    print('0.1.0')
+def main():
+    args = sys.argv[1:]
+    for arg in args:
+        print('passed argument :: {}'.format(arg))

@@ -126,16 +126,10 @@ setup(
     #    'sample': ['package_data.dat'],
     #},
 
-    # To provide executable scripts, use entry points in preference to the
-    # "scripts" keyword. Entry points provide cross-platform support and allow
-    # `pip` to create the appropriate form of executable for the target
-    # platform.
-    #
-    # For example, the following would provide a command called `sample` which
-    # executes the function `main` from this package when invoked:
+    # Adds CLI
     entry_points={
         'console_scripts': [
-            'pystarter-version=pystarter.command_line:version',
+            'pystarter = pystarter.command_line:main',
         ],
     },
 
