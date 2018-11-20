@@ -1,4 +1,4 @@
-import pystarter
+from pystarter import pystarter
 import sys
 
 def main():
