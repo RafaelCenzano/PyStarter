@@ -10,14 +10,22 @@ often looks like this::
 
 This command will start creating your python and git ready project.
 
+
 Authors
-=========
+=======
 
 1. Rafael Cenzano
 
-Check out the PyPi page `HERE <https://pypi.org/project/PyStarter/>`_.
 
-Check out the GitHub page `HERE <https://github.com/Savagecoder77/PyStarter>`_.
+Full Command List
+=================
+
+Always start commands with pystarter.
+
+pystarter::
+
+* version
+
 
 
 
@@ -27,14 +35,3 @@ Other helpful rst file stuff that will be removed
 
 Paragraphs are separated by blank lines. *Italics*, **bold**,
 and ``monospace`` look like this.
-
-
-A Section
-=========
-
-Lists look like this:
-
-* First
-
-* Second. Can be multiple lines
-  but must be indented properly.
