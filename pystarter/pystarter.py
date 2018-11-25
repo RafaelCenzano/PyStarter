@@ -7,4 +7,4 @@ def versionFind(type='int'):
     print(type)
 
 def pystarterVersion():
-    return '0.1.3'
+    return '0.1.4'
