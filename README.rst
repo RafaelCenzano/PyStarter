@@ -24,8 +24,9 @@ Always start commands with pystarter.
 
 pystarter::
 
-* version
+* --version or -V
 
+* --help -h
 
 
 
