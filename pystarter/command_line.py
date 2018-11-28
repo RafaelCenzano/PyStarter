@@ -1,5 +1,6 @@
 from .pystarter import *
 import sys
+import os
 
 def main():
     args = sys.argv[1:]
@@ -25,6 +26,9 @@ def main():
             pass
         else:
             pass
+
+    elif first_arg == 'test':
+        print(os.getcwd())
 
     else:
         print(pystarterCommands())
