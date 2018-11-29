@@ -16,7 +16,7 @@ def pystarterCommands():
 Usage:
   pystarter <command> [options]
 
-Commands:'
+Commands:
   create             Create all needed files for a git and python project
                          default option creates git and python files
 
