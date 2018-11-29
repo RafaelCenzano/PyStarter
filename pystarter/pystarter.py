@@ -22,7 +22,7 @@ Commands:
 
 Command Options:
   python             Create project ready for python only
-  git                Create project ready for git only'
+  git                Create project ready for git only
 
 'General Options:
 
