@@ -17,28 +17,13 @@ Authors
 1. Rafael Cenzano
 
 
-Full Command List
+Usage
 =================
 
-**Usage:**
-  pystarter <command> [options]
+Example Command:
 
-**Commands:**
-  create             Create all needed files for a git and python project
-                         default option creates git and python files
+``pystarter create``
 
-**Command Options:**
-  python             Create project ready for python only
-  git                Create project ready for git only
+This command creates a venv and other helpful files needed for python and git projects
 
-**General Options:**
-
-  --help, -h         Show help
-  --version, -v      Show PyStarter version
-
-
-
-Other helpful rst file stuff that will be removed
-
-Paragraphs are separated by blank lines. *Italics*, **bold**,
-and ``monospace`` look like this.
+This command has 2 extra options that you type after the above command. One to create only git ready or only python ready.
