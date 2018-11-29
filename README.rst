@@ -22,7 +22,7 @@ Full Command List
 
 Always start commands with pystarter.
 
-pystarter::
+pystarter:
 
 * --version or -V
 
