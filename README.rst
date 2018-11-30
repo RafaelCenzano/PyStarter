@@ -3,8 +3,7 @@ PyStarter
 =========
 
 PyStarter starter provides an easy way to start a git project specifically python projects from the command line. You might find
-it most useful for creating all need files, venvs, and more. Typical usage
-often looks like this::
+it most useful for creating all need files, venvs, and more. Typical usage often looks like this::
 
     pystarter create
 
