@@ -1,6 +1,5 @@
 from .pystarter import *
 import sys
-import os
 
 def main():
     args = sys.argv[1:]
