@@ -27,3 +27,4 @@ Example Command:
 This command creates a venv and other helpful files needed for python and git projects
 
 This command has 2 extra options that you type after the above command. One to create only git ready or only python ready.
+The two options: *git* *python*
