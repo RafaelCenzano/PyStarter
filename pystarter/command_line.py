@@ -37,15 +37,21 @@ The options you can add:
             continue
 
         # Check for files and directories
-        requirements = path.isfile('requirements.txt')
-        venv = path.isdir('venv')
-        ignore = path.isfile('.gitignore')
-        README = path.isfile('README.md')
-        README2 = path.isfile('README.rst')
-        setup = path.isfile('setup.py')
-        license = path.isfile('LICENSE') or path.isfile('LICENSE.txt')
+        requirements = not path.isfile('requirements.txt')
+        venv = not path.isdir('venv')
+        ignore = not path.isfile('.gitignore')
+        README = not path.isfile('README.md')
+        README2 = not path.isfile('README.rst')
+        setup = not path.isfile('setup.py')
+        license = not path.isfile('LICENSE') or path.isfile('LICENSE.txt')
         ispython = second_arg == 'python'
         isgit = second_arg == 'git'
+        isall = second_arg == None
+        ispythonall = ispython or isall
+        isgitall = isgit or isall
+
+        if requirements and ispythonall:
+
 
     elif first_arg == 'pwd' or first_arg == 'cwd':
         print(os.getcwd())
