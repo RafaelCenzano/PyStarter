@@ -44,13 +44,19 @@ The options you can add:
         README2 = not path.isfile('README.rst')
         setup = not path.isfile('setup.py')
         license = not path.isfile('LICENSE') or path.isfile('LICENSE.txt')
+
+        # Check for what the second arg is
         ispython = second_arg == 'python'
         isgit = second_arg == 'git'
         isall = second_arg == None
+
+        # Checks for (python option, git option) or just both
         ispythonall = ispython or isall
         isgitall = isgit or isall
 
+        # Create requirements.txt if it doesn't exsist and the user wants it created
         if requirements and ispythonall:
+            pass
 
 
     elif first_arg == 'pwd' or first_arg == 'cwd':
