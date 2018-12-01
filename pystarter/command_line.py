@@ -1,8 +1,8 @@
 from .pystarter import *
 import sys
-from os import path, mkdir, listdir, remove
-from platform import system
-from shutil import rmtree, move
+#from platform import system
+#from shutil import rmtree, move
+
 
 def main():
     args = sys.argv[1:]
@@ -18,6 +18,15 @@ def main():
 
     # Main command to create needed files and things
     elif first_arg == 'create':
+        # Make sure imports work
+        try:
+            from os import path
+            from subprocess import Popen, PIPE
+        except:
+            print('Error with pythom imports')
+            continue
+
+        # Find the second argument
         try:
             second_arg = sys.argv[2].lower()
         except ValueError:
@@ -56,8 +65,12 @@ The options you can add:
 
         # Create requirements.txt if it doesn't exsist and the user wants it created
         if requirements and ispythonall:
-            pass
+            requirementstxt = open('requirements.txt', 'w+')
+            requirementstxt.write('')
+            requirementstxt.close()
 
+        if venv and ispythonall:
+            pass
 
     elif first_arg == 'pwd' or first_arg == 'cwd':
         print(os.getcwd())
