@@ -72,11 +72,22 @@ The options you can add:
         # Create requirements.txt if it doesn't exsist and the user wants it created
         if requirements and ispythonall:
             requirementstxt = open('requirements.txt', 'w+')
-            requirementstxt.write('')
+            requirementstxt.write(' ')
             requirementstxt.close()
 
+        # Create venv for python
         if venv and ispythonall:
-            pass
+            venv = Popen(['virtualenv venv'], stdout = PIPE, stderr = PIPE, shell = True)
+            (out, err) = venv.communicate()
+
+        if ignore and isgitall:
+            gitignore = open('.gitignore', 'w+')
+            gitignore.write('venv/\n')
+            gitignore.write('*.pyc\n')
+            gitignore.write('config.py\n')
+            gitignore.write('__pycache__\n')
+            gitignore.close()
+
 
     elif first_arg == 'pwd' or first_arg == 'cwd':
         print(os.getcwd())
