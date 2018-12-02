@@ -67,7 +67,7 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
-    install_requires=['virtualenv'],
+    install_requires=['virtualenv==16.1.0','requests==2.20.1'],
 
     # Data files
     #package_data={
