@@ -88,6 +88,26 @@ The options you can add:
             gitignore.write('__pycache__\n')
             gitignore.close()
 
+        if README and isgitall:
+            dirname = path.dirname(__file__)
+            READMEMD = open('README.md', 'w+')
+            READMEMD.write('#' + str(dirname) + '\n')
+            READMEMD.close()
+
+        if README2 and isgitall:
+            dirname = path.dirname(__file__)
+            READMERST = open('README.rst', 'w+')
+            lengthdirname = len(dirname)
+            count = 0
+            while count < lengthdirname:
+                READMERST.write('=')
+                count += 1
+            READMERST.write(str(dirname))
+            count = 0
+            while count < lengthdirname:
+                READMERST.write('=')
+                count += 1
+            READMERST.close()
 
     elif first_arg == 'pwd' or first_arg == 'cwd':
         print(os.getcwd())
@@ -96,4 +116,6 @@ The options you can add:
         print(pystarterCommands())
 
 if __name__ == '__main__':
+    from os import path
+    print(path.dirname(__file__))
     main()
