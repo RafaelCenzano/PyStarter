@@ -1,8 +1,5 @@
 from pystarter import *
 import sys
-#from platform import system
-#from shutil import rmtree, move
-
 
 def main():
     #args = sys.argv[1:]
@@ -51,6 +48,11 @@ The options you can add:
                   ''')
             pass
 
+        if path.isfile('README.md') == False and path.isfile('README.rst') == False:
+            DidREADME = False
+        else:
+            DidREADME = True
+
         # Check for files and directories
         requirements = not path.isfile('requirements.txt')
         venv = not path.isdir('venv')
@@ -88,13 +90,14 @@ The options you can add:
             gitignore.write('__pycache__\n')
             gitignore.close()
 
-        if README and isgitall:
+        if README and isgitall and DidREADME == False:
             dirname = path.dirname(__file__)
             READMEMD = open('README.md', 'w+')
             READMEMD.write('#' + str(dirname) + '\n\n\n')
             READMEMD.close()
+            DidREADME = True
 
-        if README2 and isgitall:
+        if README2 and isgitall and DidREADME == False:
             dirname = path.dirname(__file__)
             READMERST = open('README.rst', 'w+')
             lengthdirname = len(dirname)
@@ -109,6 +112,7 @@ The options you can add:
                 count += 1
             READMERST.write('\n\n\n')
             READMERST.close()
+            DidREADME = True
 
         if setup and ispythonall:
             setuppy = open('setup.py', 'w+')
@@ -117,18 +121,16 @@ The options you can add:
             setuppy.close()
 
         if license and isgitall:
-            try:
-                input = raw_input
-            except NameError:
-                pass
+            from builtins import input
+            import requests
 
             while True:
                 print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
-                whichlicense = input('What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license') : ').lower()
+                whichlicense = input('What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license) : ').lower()
 
                 if whichlicense == '1' or whichlicense == 'apache license 2.0' or whichlicense == 'apache' or whichlicense == 'apache license':
                     url = 'https://gist.githubusercontent.com/SavageCoder77/af203e37c70f074e164105313f572e59/raw/d18216a75ee3c25f81945889c832397c5e344e67/Apache2.0.txt'
-                    r = get(url)
+                    r = requests.get(url)
                     page = r.text
                     soup = bs(page, 'html.parser')
                     text = soup.findAll('pre', attrs={'style':'word-wrap'})
@@ -142,7 +144,7 @@ The options you can add:
 
                 elif whichlicense == '2' or whichlicense == 'mit' or whichlicense == 'mit license':
                     url = 'https://gist.githubusercontent.com/SavageCoder77/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
-                    r = get(url)
+                    r = requests.get(url)
                     page = r.text
                     soup = bs(page, 'html.parser')
                     text = soup.findAll('pre', attrs={'style':'word-wrap'})
@@ -156,7 +158,7 @@ The options you can add:
 
                 elif whichlicense == '3' or whichlicense == 'gnu' or whichlicense == 'gnu general public license' or whichlicense == 'general public license':
                     url = 'https://gist.githubusercontent.com/SavageCoder77/de69952598e851bc8d46bf5f42960fc3/raw/55ef789e1949d20300aeb0e8ee591a79bdf945c3/GNU.txt'
-                    r = get(url)
+                    r = requests.get(url)
                     page = r.text
                     soup = bs(page, 'html.parser')
                     text = soup.findAll('pre', attrs={'style':'word-wrap'})
@@ -176,6 +178,7 @@ The options you can add:
 
 
     elif first_arg == 'pwd' or first_arg == 'cwd':
+        import os
         print(os.getcwd())
 
     else:
