@@ -116,6 +116,29 @@ The options you can add:
             setuppy.write('import os')
             setuppy.close()
 
+        if license and isgitall:
+            try:
+                input = raw_input
+            except NameError:
+                pass
+
+            LICENSE = ''
+
+            while True:
+                print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
+                whichlicense = input('What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license') : ').lower()
+                if whichlicense == '1' or whichlicense == 'apache license 2.0' or whichlicense == 'apache' or whichlicense == 'apache license':
+                    pass
+                elif whichlicense == '2' or whichlicense == 'mit' or whichlicense == 'mit license':
+                    pass
+                elif whichlicense == '3' or whichlicense == 'gnu' or whichlicense == 'gnu general public license' or whichlicense == 'general public license':
+                    pass
+                elif whichlicense == 'none':
+                    break
+                else:
+                    print('\n\n\nThat is not and option\n\n')
+
+
     elif first_arg == 'pwd' or first_arg == 'cwd':
         print(os.getcwd())
 
