@@ -116,6 +116,4 @@ The options you can add:
         print(pystarterCommands())
 
 if __name__ == '__main__':
-    from os import path
-    print(path.dirname(__file__))
     main()
