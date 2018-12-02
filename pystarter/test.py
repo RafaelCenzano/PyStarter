@@ -58,7 +58,7 @@ The options you can add:
         README = not path.isfile('README.md')
         README2 = not path.isfile('README.rst')
         setup = not path.isfile('setup.py')
-        license = not path.isfile('LICENSE') or path.isfile('LICENSE.txt')
+        license = not path.isfile('LICENSE') or not path.isfile('LICENSE.txt')
 
         # Check for what the second arg is
         ispython = second_arg == 'python'
@@ -91,7 +91,7 @@ The options you can add:
         if README and isgitall:
             dirname = path.dirname(__file__)
             READMEMD = open('README.md', 'w+')
-            READMEMD.write('#' + str(dirname) + '\n')
+            READMEMD.write('#' + str(dirname) + '\n\n\n')
             READMEMD.close()
 
         if README2 and isgitall:
@@ -102,12 +102,19 @@ The options you can add:
             while count < lengthdirname:
                 READMERST.write('=')
                 count += 1
-            READMERST.write(str(dirname))
+            READMERST.write('\n' + str(dirname) + '\n')
             count = 0
             while count < lengthdirname:
                 READMERST.write('=')
                 count += 1
+            READMERST.write('\n\n\n')
             READMERST.close()
+
+        if setup and ispythonall:
+            setuppy = open('setup.py', 'w+')
+            setuppy.write('import sys')
+            setuppy.write('import os')
+            setuppy.close()
 
     elif first_arg == 'pwd' or first_arg == 'cwd':
         print(os.getcwd())
