@@ -8,7 +8,7 @@ def versionFind(type='int'):
     print(type)
 
 def pystarterVersion():
-    return '0.1.6'
+    return '1.0.0'
 
 def pystarterCommands():
     return ('''
