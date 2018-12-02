@@ -1,6 +1,8 @@
 from pystarter import *
 import sys
 
+# This file must be called directly
+
 def main():
     #args = sys.argv[1:]
 
