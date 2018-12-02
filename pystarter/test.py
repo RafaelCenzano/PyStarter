@@ -122,19 +122,55 @@ The options you can add:
             except NameError:
                 pass
 
-            LICENSE = ''
-
             while True:
                 print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
                 whichlicense = input('What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license') : ').lower()
+
                 if whichlicense == '1' or whichlicense == 'apache license 2.0' or whichlicense == 'apache' or whichlicense == 'apache license':
-                    pass
+                    url = 'https://gist.githubusercontent.com/SavageCoder77/af203e37c70f074e164105313f572e59/raw/d18216a75ee3c25f81945889c832397c5e344e67/Apache2.0.txt'
+                    r = get(url)
+                    page = r.text
+                    soup = bs(page, 'html.parser')
+                    text = soup.findAll('pre', attrs={'style':'word-wrap'})
+                    LICENSE = text[0].getText()
+
+                    LICENSEWRITE = open('LICENSE', 'w+')
+                    LICENSEWRITE.write(LICENSE)
+                    LICENSEWRITE.close()
+
+                    print('You will need to add you name to the LICENSE')
+
                 elif whichlicense == '2' or whichlicense == 'mit' or whichlicense == 'mit license':
-                    pass
+                    url = 'https://gist.githubusercontent.com/SavageCoder77/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
+                    r = get(url)
+                    page = r.text
+                    soup = bs(page, 'html.parser')
+                    text = soup.findAll('pre', attrs={'style':'word-wrap'})
+                    LICENSE = text[0].getText()
+
+                    LICENSEWRITE = open('LICENSE', 'w+')
+                    LICENSEWRITE.write(LICENSE)
+                    LICENSEWRITE.close()
+
+                    print('You will need to add you name to the LICENSE')
+
                 elif whichlicense == '3' or whichlicense == 'gnu' or whichlicense == 'gnu general public license' or whichlicense == 'general public license':
-                    pass
+                    url = 'https://gist.githubusercontent.com/SavageCoder77/de69952598e851bc8d46bf5f42960fc3/raw/55ef789e1949d20300aeb0e8ee591a79bdf945c3/GNU.txt'
+                    r = get(url)
+                    page = r.text
+                    soup = bs(page, 'html.parser')
+                    text = soup.findAll('pre', attrs={'style':'word-wrap'})
+                    LICENSE = text[0].getText()
+
+                    LICENSEWRITE = open('LICENSE', 'w+')
+                    LICENSEWRITE.write(LICENSE)
+                    LICENSEWRITE.close()
+
+                    print('You will need to add you name to the LICENSE')
+
                 elif whichlicense == 'none':
                     break
+
                 else:
                     print('\n\n\nThat is not and option\n\n')
 
