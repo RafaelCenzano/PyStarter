@@ -24,7 +24,7 @@ Command Options:
   python             Create project ready for python only
   git                Create project ready for git only
 
-'General Options:
+General Options:
 
   --help, -h         Show help
   --version, -v      Show PyStarter version
