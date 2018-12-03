@@ -151,7 +151,7 @@ The options you can add:
                     LICENSEWRITE.write(str(LICENSE))
                     LICENSEWRITE.close()
 
-                    print('You will need to add you name to the LICENSE')
+                    print('You will need to add your name to the LICENSE')
 
                     break
 
@@ -164,7 +164,7 @@ The options you can add:
                     LICENSEWRITE.write(str(LICENSE))
                     LICENSEWRITE.close()
 
-                    print('You will need to add you name to the LICENSE')
+                    print('You will need to add your name to the LICENSE')
 
                     break
 
@@ -177,7 +177,7 @@ The options you can add:
                     LICENSEWRITE.write(str(LICENSE))
                     LICENSEWRITE.close()
 
-                    print('You will need to add you name to the LICENSE')
+                    print('You will need to add your name to the LICENSE')
 
                     break
 
