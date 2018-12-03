@@ -58,19 +58,22 @@ The options you can add:
         else:
             GO = True
 
+        # Check if any README file exsists
         if path.isfile('README.md') == False and path.isfile('README.rst') == False:
             DidREADME = False
         else:
             DidREADME = True
 
-        # Check for files and directories
-        requirements = path.isfile('requirements.txt') != True
-        venv = path.isdir('venv') != True
-        ignore = path.isfile('.gitignore') != True
-        README = path.isfile('README.md') != True
-        README2 = path.isfile('README.rst') != True
-        setup = path.isfile('setup.py') != True
-        license = path.isfile('LICENSE') != True or path.isfile('LICENSE.txt') != True
+        # Check for files and directories for git
+        requirements = path.isfile('requirements.txt')
+        setup = path.isfile('setup.py')
+        venv = path.isdir('venv')
+
+        # Check for files and directories for python
+        license = path.isfile('LICENSE') or path.isfile('LICENSE.txt')
+        ignore = path.isfile('.gitignore')
+        README = path.isfile('README.md')
+        README2 = path.isfile('README.rst')
 
         # Check for what the second arg is
         ispython = second_arg == 'python' and GO == True
@@ -78,21 +81,11 @@ The options you can add:
         isall = second_arg == 'None' and GO == True
 
         # Checks for (python option, git option) or just both
-        ispythonall = ispython or isall
-        isgitall = isgit or isall
+        ispythonall = ispython == True or isall == True
+        isgitall = isgit == True or isall == True
 
-        # Create requirements.txt if it doesn't exsist and the user wants it created
-        if requirements and ispythonall:
-            requirementstxt = open('requirements.txt', 'w+')
-            requirementstxt.write(' ')
-            requirementstxt.close()
-
-        # Create venv for python
-        if venv and ispythonall:
-            venv = Popen(['virtualenv venv'], stdout = PIPE, stderr = PIPE, shell = True)
-            (out, err) = venv.communicate()
-
-        if ignore and isgitall:
+        # Create .gitignore for git
+        if ignore == False and isgitall == True:
             gitignore = open('.gitignore', 'w+')
             gitignore.write('venv/\n')
             gitignore.write('*.pyc\n')
@@ -100,14 +93,14 @@ The options you can add:
             gitignore.write('__pycache__\n')
             gitignore.close()
 
-        if README and isgitall and DidREADME == False:
+        if README == False and isgitall == True and DidREADME == False:
             dirname = path.dirname(__file__)
             READMEMD = open('README.md', 'w+')
             READMEMD.write('#' + str(dirname) + '\n\n\n')
             READMEMD.close()
             DidREADME = True
 
-        if README2 and isgitall and DidREADME == False:
+        if README2 == False and isgitall == True and DidREADME == False:
             dirname = path.dirname(__file__)
             READMERST = open('README.rst', 'w+')
             lengthdirname = len(dirname)
@@ -124,13 +117,24 @@ The options you can add:
             READMERST.close()
             DidREADME = True
 
-        if setup and ispythonall:
+        # Create requirements.txt if it doesn't exsist and the user wants it created
+        if requirements == False and ispythonall == True:
+            requirementstxt = open('requirements.txt', 'w+')
+            requirementstxt.write(' ')
+            requirementstxt.close()
+
+        # Create venv for python
+        if venv == False and ispythonall == True:
+            venv = Popen(['virtualenv venv'], stdout = PIPE, stderr = PIPE, shell = True)
+            (out, err) = venv.communicate()
+
+        if setup == False and ispythonall == True:
             setuppy = open('setup.py', 'w+')
             setuppy.write('import sys')
             setuppy.write('import os')
             setuppy.close()
 
-        if license and isgitall:
+        if license == False and isgitall == True:
             from builtins import input
             import requests
 
