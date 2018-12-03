@@ -36,9 +36,11 @@ def main():
         except IndexError:
             second_arg = 'None'
 
-        if second_arg == 'python' or second_arg == 'git' or second_arg != 'None':
-            print(str(second_arg) + ' is not an option for the create command\n')
-            print('''
+        if second_arg != 'None':
+            if second_arg != 'python':
+                if second_arg != 'git':
+                    print(str(second_arg) + ' is not an option for the create command\n')
+                    print('''
 The command is used like this:
 pystarter create <option>
 
@@ -47,8 +49,14 @@ option can be left blank
 The options you can add:
     <git> for git only projects
     <python> for python only projects
-                  ''')
-            pass
+                        ''')
+                    GO = False
+                else:
+                    GO = True
+            else:
+                GO = True
+        else:
+            GO = True
 
         if path.isfile('README.md') == False and path.isfile('README.rst') == False:
             DidREADME = False
@@ -56,18 +64,18 @@ The options you can add:
             DidREADME = True
 
         # Check for files and directories
-        requirements = not path.isfile('requirements.txt')
-        venv = not path.isdir('venv')
-        ignore = not path.isfile('.gitignore')
-        README = not path.isfile('README.md')
-        README2 = not path.isfile('README.rst')
-        setup = not path.isfile('setup.py')
-        license = not path.isfile('LICENSE') or not path.isfile('LICENSE.txt')
+        requirements = path.isfile('requirements.txt') != True
+        venv = path.isdir('venv') != True
+        ignore = path.isfile('.gitignore') != True
+        README = path.isfile('README.md') != True
+        README2 = path.isfile('README.rst') != True
+        setup = path.isfile('setup.py') != True
+        license = path.isfile('LICENSE') != True or path.isfile('LICENSE.txt') != True
 
         # Check for what the second arg is
-        ispython = second_arg == 'python'
-        isgit = second_arg == 'git'
-        isall = second_arg == 'None'
+        ispython = second_arg == 'python' and GO == True
+        isgit = second_arg == 'git' and GO == True
+        isall = second_arg == 'None' and GO == True
 
         # Checks for (python option, git option) or just both
         ispythonall = ispython or isall
@@ -127,50 +135,47 @@ The options you can add:
             import requests
 
             while True:
-                print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
+                print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\n\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
                 whichlicense = input('What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license) : ').lower()
 
                 if whichlicense == '1' or whichlicense == 'apache license 2.0' or whichlicense == 'apache' or whichlicense == 'apache license':
                     url = 'https://gist.githubusercontent.com/SavageCoder77/af203e37c70f074e164105313f572e59/raw/d18216a75ee3c25f81945889c832397c5e344e67/Apache2.0.txt'
                     r = requests.get(url)
-                    page = r.text
-                    soup = bs(page, 'html.parser')
-                    text = soup.findAll('pre', attrs={'style':'word-wrap'})
-                    LICENSE = text[0].getText()
+                    LICENSE = r.content
 
                     LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(LICENSE)
+                    LICENSEWRITE.write(str(LICENSE))
                     LICENSEWRITE.close()
 
                     print('You will need to add you name to the LICENSE')
+
+                    break
 
                 elif whichlicense == '2' or whichlicense == 'mit' or whichlicense == 'mit license':
                     url = 'https://gist.githubusercontent.com/SavageCoder77/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
                     r = requests.get(url)
-                    page = r.text
-                    soup = bs(page, 'html.parser')
-                    text = soup.findAll('pre', attrs={'style':'word-wrap'})
-                    LICENSE = text[0].getText()
+                    LICENSE = r.content
 
                     LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(LICENSE)
+                    LICENSEWRITE.write(str(LICENSE))
                     LICENSEWRITE.close()
 
                     print('You will need to add you name to the LICENSE')
+
+                    break
 
                 elif whichlicense == '3' or whichlicense == 'gnu' or whichlicense == 'gnu general public license' or whichlicense == 'general public license':
                     url = 'https://gist.githubusercontent.com/SavageCoder77/de69952598e851bc8d46bf5f42960fc3/raw/55ef789e1949d20300aeb0e8ee591a79bdf945c3/GNU.txt'
                     r = requests.get(url)
-                    page = r.text
-                    soup = bs(page, 'html.parser')
-                    text = soup.findAll('pre', attrs={'style':'word-wrap'})
-                    LICENSE = text[0].getText()
+                    LICENSE = r.content
 
                     LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(LICENSE)
+                    LICENSEWRITE.write(str(LICENSE))
                     LICENSEWRITE.close()
 
                     print('You will need to add you name to the LICENSE')
+
+                    break
 
                 elif whichlicense == 'none':
                     break
