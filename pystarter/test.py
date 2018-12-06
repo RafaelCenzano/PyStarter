@@ -192,6 +192,23 @@ The options you can add:
         import os
         print(os.getcwd())
 
+    elif first_arg == 'activate':
+        import platform
+        os_type = platform.system()
+        python_version_find = platform.python_version()
+        split_versison = python_version_find.split(".")
+        version_info_python = split_versison[0]
+
+        if os_type == 'Windows':
+            activate_this_file = 'venv\\scripts\\activate_this.py'
+        else:
+            activate_this_file = 'venv/bin/activate_this.py'
+
+        if version_info_python == '2'
+            execfile(activate_this_file, dict(__file__=activate_this_file))
+        else:
+            exec(open(activate_this_file, dict(__file__=activate_this_file)).read())
+
     else:
         print(pystarterCommands())
 
