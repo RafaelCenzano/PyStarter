@@ -1,6 +1,3 @@
-# Imports
-import platform
-
 class Error(Exception):
    # Base class for other exceptions
    pass
@@ -10,6 +7,8 @@ class MissingValue(Error):
    pass
 
 def versionFind(type='int'):
+    import platform
+
     version = platform.python_version()
     version_split = version.split('.')
     main_version = version_split[0]
@@ -37,3 +36,10 @@ def versionFind(type='int'):
 
     else:
         raise MissingValue
+
+def findVenv():
+    from os import path, listdir, getcwd
+
+    path = getcwd()
+
+    listdir(path)

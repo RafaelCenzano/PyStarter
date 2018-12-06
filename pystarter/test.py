@@ -229,7 +229,7 @@ The options you can add:
             exec(open(activate_this_file, dict(__file__=activate_this_file)).read())
 
     else:
-        print(pystarterCommands())
+        print(commands)
 
 if __name__ == '__main__':
     main()
