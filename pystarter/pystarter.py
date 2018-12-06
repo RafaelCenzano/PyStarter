@@ -1,31 +1,39 @@
 # Imports
-import sys
+import platform
 
+class Error(Exception):
+   # Base class for other exceptions
+   pass
+
+class MissingValue(Error):
+   # Raised when value is missing
+   pass
 
 def versionFind(type='int'):
-    version_tuple = sys.version_info
-    print(version_tuple)
-    print(type)
+    version = platform.python_version()
+    version_split = version.split('.')
+    main_version = version_split[0]
+    try:
+        sub_version = version_split[1]
+    except:
+        sub_version = None
 
-def pystarterVersion():
-    return '1.1.1'
+    try:
+        sub_sub_version = version_split[2]
+    except:
+        sub_sub_version = None
 
-def pystarterCommands():
-    return ('''
+    if type == 'int' or type == 'one' or type == 'first' or type == 1:
+        return main_version
 
-Usage:
-  pystarter <command> [options]
+    elif type == 'second' or type == 'two' or type == 2:
+        return main_version, sub_version
 
-Commands:
-  create             Create all needed files for a git and python project
-                         default option creates git and python files
+    elif type == 'third' or type == 'three' or type == 3:
+        return main_version, sub_version, sub_sub_version
 
-Command Options:
-  python             Create project ready for python only
-  git                Create project ready for git only
+    elif type == 'str' or type == 'string':
+        return version
 
-General Options:
-
-  --help, -h         Show help
-  --version, -v      Show PyStarter version
-            ''')
+    else:
+        raise MissingValue
