@@ -42,4 +42,8 @@ def findVenv():
 
     path = getcwd()
 
-    listdir(path)
+    dirs = []
+
+    for items in listdir(path):
+        if path.isdiir(items):
+            dirs.apphend(items)
