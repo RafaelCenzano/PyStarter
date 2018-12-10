@@ -47,3 +47,8 @@ def findVenv():
     for items in listdir(path):
         if path.isdiir(items):
             dirs.apphend(items)
+
+    if 'venv' in dirs:
+        return 'venv'
+    elif 'env' in dirs:
+        return 'env'
