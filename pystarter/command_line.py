@@ -141,7 +141,7 @@ The options you can add:
                 whichlicense = input('What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license) : ').lower()
 
                 if whichlicense == '1' or whichlicense == 'apache license 2.0' or whichlicense == 'apache' or whichlicense == 'apache license':
-                    url = 'https://gist.githubusercontent.com/SavageCoder77/af203e37c70f074e164105313f572e59/raw/d18216a75ee3c25f81945889c832397c5e344e67/Apache2.0.txt'
+                    url = 'https://gist.githubusercontent.com/RafaelCenzano/af203e37c70f074e164105313f572e59/raw/d18216a75ee3c25f81945889c832397c5e344e67/Apache2.0.txt'
                     r = requests.get(url)
                     LICENSE = r.content
 
@@ -154,7 +154,7 @@ The options you can add:
                     break
 
                 elif whichlicense == '2' or whichlicense == 'mit' or whichlicense == 'mit license':
-                    url = 'https://gist.githubusercontent.com/SavageCoder77/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
+                    url = 'https://gist.githubusercontent.com/RafaelCenzano/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
                     r = requests.get(url)
                     LICENSE = r.content
 
@@ -167,7 +167,7 @@ The options you can add:
                     break
 
                 elif whichlicense == '3' or whichlicense == 'gnu' or whichlicense == 'gnu general public license' or whichlicense == 'general public license':
-                    url = 'https://gist.githubusercontent.com/SavageCoder77/de69952598e851bc8d46bf5f42960fc3/raw/55ef789e1949d20300aeb0e8ee591a79bdf945c3/GNU.txt'
+                    url = 'https://gist.githubusercontent.com/RafaelCenzano/de69952598e851bc8d46bf5f42960fc3/raw/0fbbd2e2f1c869acf01b67027e50af7c1153cf55/GNU.txt'
                     r = requests.get(url)
                     LICENSE = r.content
 
