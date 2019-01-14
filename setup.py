@@ -14,7 +14,7 @@ setup(
     name='PyStarter',
 
     # Version
-    version='1.1.1',
+    version='1.1.2',
 
     # description
     description='A program to help you start python and git project files and venvs',
