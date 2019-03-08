@@ -1,14 +1,14 @@
 from pystarter import *
 import sys
 
+
 def main():
     #args = sys.argv[1:]
 
     try:
         first_arg = sys.argv[1].lower()
     except IndexError:
-        first_arg = 'bob'
-
+        first_arg = None
 
     # Version command
     if first_arg == '--version' or first_arg == '-v':
@@ -20,24 +20,39 @@ def main():
 
     # Main command to create needed files and things
     elif first_arg == 'create':
-        # Make sure imports work
+
+        # import os
         try:
             from os import path
+        except BaseException:
+            print('Error with importing os')
+            exit()
+
+        # import subprocess
+        try:
             from subprocess import Popen, PIPE
-        except:
-            print('Error with pythom imports')
+        except BaseException:
+            print('Error with importing subprocess')
+            exit()
+
+        # universal input
+        try:
+            input = raw_input
+        except NameError:
             pass
 
         # Find the second argument
         try:
             second_arg = sys.argv[2].lower()
         except IndexError:
-            second_arg = 'None'
+            second_arg = None
 
-        if second_arg != 'None':
+        if second_arg is not None:
             if second_arg != 'python':
                 if second_arg != 'git':
-                    print(str(second_arg) + ' is not an option for the create command\n')
+                    print(
+                        str(second_arg)
+                        + ' is not an option for the create command\n')
                     print('''
 The command is used like this:
 pystarter create <option>
@@ -47,43 +62,44 @@ option can be left blank
 The options you can add:
     <git> for git only projects
     <python> for python only projects
+    or leave it blank for both python and git projects
                         ''')
-                    GO = False
+                    exit()
                 else:
-                    GO = True
-            else:
-                GO = True
-        else:
-            GO = True
+                    if path.isdir('.git'):
+                        print(
+                            'Detected git folder.\nWould you like to include git file creation for the command\ny/n\n')
+                        check_if_git = input('>')
+                        if 'y' in check_if_git:
+                            second_arg = 'git'
+            # else:
+                #python_check = pystarter_check_for_python_files()
 
         # Check if any README file exsists
-        if path.isfile('README.md') == False and path.isfile('README.rst') == False:
-            DidREADME = False
-        else:
-            DidREADME = True
+        README = True
+        if path.isfile('README.md') == False and path.isfile(
+                'README.rst') == False and path.isfile('README.txt') == False:
+            README = False
 
         # Check for files and directories for git
         requirements = path.isfile('requirements.txt')
         setup = path.isfile('setup.py')
-        venv = path.isdir('venv')
 
         # Check for files and directories for python
         license = path.isfile('LICENSE') or path.isfile('LICENSE.txt')
         ignore = path.isfile('.gitignore')
-        README = path.isfile('README.md')
-        README2 = path.isfile('README.rst')
 
         # Check for what the second arg is
-        ispython = second_arg == 'python' and GO == True
-        isgit = second_arg == 'git' and GO == True
-        isall = second_arg == 'None' and GO == True
+        ispython = second_arg == 'python'
+        isgit = second_arg == 'git'
+        isall = second_arg is None
 
         # Checks for (python option, git option) or just both
-        ispythonall = ispython == True or isall == True
-        isgitall = isgit == True or isall == True
+        is_python_and_all = ispython or isall
+        is_git_and_all = isgit or isall
 
         # Create .gitignore for git
-        if ignore == False and isgitall == True:
+        if ignore == False and is_git_and_all == True:
             gitignore = open('.gitignore', 'w+')
             gitignore.write('venv/\n')
             gitignore.write('*.pyc\n')
@@ -91,14 +107,14 @@ The options you can add:
             gitignore.write('__pycache__\n')
             gitignore.close()
 
-        if README == False and isgitall == True and DidREADME == False:
+        if README == False and is_git_and_all == True and DidREADME == False:
             dirname = path.dirname(__file__)
             READMEMD = open('README.md', 'w+')
             READMEMD.write('#' + str(dirname) + '\n\n\n')
             READMEMD.close()
             DidREADME = True
 
-        if README2 == False and isgitall == True and DidREADME == False:
+        if README2 == False and is_git_and_all == True and DidREADME == False:
             dirname = path.dirname(__file__)
             READMERST = open('README.rst', 'w+')
             lengthdirname = len(dirname)
@@ -115,30 +131,36 @@ The options you can add:
             READMERST.close()
             DidREADME = True
 
-        # Create requirements.txt if it doesn't exsist and the user wants it created
-        if requirements == False and ispythonall == True:
+        # Create requirements.txt if it doesn't exsist and the user wants it
+        # created
+        if requirements == False and is_python_and_all == True:
             requirementstxt = open('requirements.txt', 'w+')
             requirementstxt.write(' ')
             requirementstxt.close()
 
         # Create venv for python
-        if venv == False and ispythonall == True:
-            venv = Popen(['virtualenv venv'], stdout = PIPE, stderr = PIPE, shell = True)
+        if findVenv() is not None and is_python_and_all:
+            venv = Popen(
+                ['virtualenv venv'],
+                stdout=PIPE,
+                stderr=PIPE,
+                shell=True)
             (out, err) = venv.communicate()
 
-        if setup == False and ispythonall == True:
+        if setup == False and is_python_and_all == True:
             setuppy = open('setup.py', 'w+')
             setuppy.write('import sys')
             setuppy.write('import os')
             setuppy.close()
 
-        if license == False and isgitall == True:
+        if license == False and is_git_and_all == True:
             from builtins import input
             import requests
 
             while True:
                 print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\n\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
-                whichlicense = input('What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license) : ').lower()
+                whichlicense = input(
+                    'What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license) : ').lower()
 
                 if whichlicense == '1' or whichlicense == 'apache license 2.0' or whichlicense == 'apache' or whichlicense == 'apache license':
                     url = 'https://gist.githubusercontent.com/RafaelCenzano/af203e37c70f074e164105313f572e59/raw/d18216a75ee3c25f81945889c832397c5e344e67/Apache2.0.txt'
@@ -185,9 +207,15 @@ The options you can add:
                 else:
                     print('\n\n\nThat is not and option\n\n')
 
-
     elif first_arg == 'pwd' or first_arg == 'cwd':
-        import os
+
+        # import os
+        try:
+            import os
+        except BaseException:
+            print('Error with importing os')
+            exit()
+
         print(os.getcwd())
 
     else:
