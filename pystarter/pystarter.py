@@ -38,17 +38,22 @@ def versionFind(type='int'):
         raise MissingValue
 
 def findVenv():
-    from os import path, listdir, getcwd
+    # import os
+    try:
+        from os import path,listdir, getcwd
+    except:
+        print('Error with importing os')
+        exit()
 
-    path = getcwd()
 
-    dirs = []
+    command_path = getcwd()
 
-    for items in listdir(path):
-        if path.isdiir(items):
-            dirs.apphend(items)
-
-    if 'venv' in dirs:
-        return 'venv'
-    elif 'env' in dirs:
-        return 'env'
+    for item in listdir(command_path):
+        if path.isdir(item):
+            print('dirs ' + str(item))
+            for dirs in listdir(path.join(command_path, item)):
+                if path.isdir(path.join(command_path, item, dirs)):
+                    print('dirs ' + str(item) + ' in ' + str(dirs))
+                    if dirs == 'bin' or dirs == 'Scripts':
+                        return item
+    return None
