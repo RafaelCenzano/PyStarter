@@ -53,27 +53,22 @@ def main():
                     print(
                         str(second_arg)
                         + ' is not an option for the create command\n')
-                    print('''
-The command is used like this:
-pystarter create <option>
-
-option can be left blank
-
-The options you can add:
-    <git> for git only projects
-    <python> for python only projects
-    or leave it blank for both python and git projects
-                        ''')
+                    print(pystarterCommands)
                     exit()
-                else:
-                    if path.isdir('.git'):
-                        print(
-                            'Detected git folder.\nWould you like to include git file creation for the command\ny/n\n')
-                        check_if_git = input('>')
-                        if 'y' in check_if_git:
-                            second_arg = 'git'
-            # else:
-                #python_check = pystarter_check_for_python_files()
+
+        if path.isdir('.git') == True:
+            print(
+                'Detected git folder.\nWould you like to include git file creation for the command\ny/n\n')
+            check_if_git = input('>')
+            if 'y' in check_if_git:
+                second_arg = 'git'
+
+        if Pythonfilecheck() == True:
+            print(
+                'Detected python file.\nWould you like to include python file creation for the command\ny/n\n')
+            check_if_python = input('>')
+            if 'y' in check_if_python:
+                second_arg = 'python'
 
         # Check if any README file exsists
         README = True
@@ -104,7 +99,6 @@ The options you can add:
             gitignore.write('venv/\n')
             gitignore.write('*.pyc\n')
             gitignore.write('config.py\n')
-            gitignore.write('__pycache__\n')
             gitignore.close()
 
         if README == False and is_git_and_all == True and DidREADME == False:
