@@ -1,11 +1,3 @@
-class Error(Exception):
-   # Base class for other exceptions
-   pass
-
-class MissingValue(Error):
-   # Raised when value is missing
-   pass
-
 def versionFind(type='int'):
     import platform
 
@@ -57,3 +49,19 @@ def findVenv():
                     if dirs == 'bin' or dirs == 'Scripts':
                         return item
     return None
+
+def Pythonfilecheck():
+    pass
+
+def pystarterCommands():
+    return ('''
+The command is used like this:
+pystarter create <option>
+
+option can be left blank
+
+The options you can add:
+    <git> for git only projects
+    <python> for python only projects
+    or leave it blank for both python and git projects
+    ''')
