@@ -201,16 +201,5 @@ def main():
                 else:
                     print('\n\n\nThat is not and option\n\n')
 
-    elif first_arg == 'pwd' or first_arg == 'cwd':
-
-        # import os
-        try:
-            import os
-        except BaseException:
-            print('Error with importing os')
-            exit()
-
-        print(os.getcwd())
-
     else:
         print(pystarterCommands())
