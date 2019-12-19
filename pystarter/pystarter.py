@@ -23,10 +23,6 @@ def pystarterVersion():
     return '1.2.0'
 
 
-def Pythonfilecheck():
-    pass
-
-
 def pystarterCommands():
     return ('''
 The command is used like this:
