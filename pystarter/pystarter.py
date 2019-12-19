@@ -25,6 +25,7 @@ def pystarterVersion():
 
 def pystarterCommands():
     return ('''
+
 The command is used like this:
 pystarter create <option>
 
@@ -34,4 +35,5 @@ Options you can use (do not use <> in command arguments):
     <git> for git only projects
     <python> for python only projects
     or leave it blank for both python and git projects
-    ''')
+
+           ''')
