@@ -51,19 +51,19 @@ def main():
             if second_arg != 'python':
                 if second_arg != 'git':
                     print(
-                        str(second_arg)
-                        + ' is not an option for the create command\n')
+                        str(second_arg) +
+                        ' is not an option for the create command\n')
                     print(pystarterCommands)
                     exit()
 
-        if path.isdir('.git') == True:
+        if path.isdir('.git'):
             print(
                 'Detected git folder.\nWould you like to include git file creation for the command\ny/n\n')
             check_if_git = input('>')
             if 'y' in check_if_git:
                 second_arg = 'git'
 
-        if Pythonfilecheck() == True:
+        if Pythonfilecheck():
             print(
                 'Detected python file.\nWould you like to include python file creation for the command\ny/n\n')
             check_if_python = input('>')
