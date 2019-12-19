@@ -202,6 +202,7 @@ def main():
                     print('\n\n\nThat is not and option\n\n')
 
     else:
+        print('Command ' + sys.argv[1:] + ' not found.\n')
         print(pystarterCommands())
 
 if __name__ == '__main__':
