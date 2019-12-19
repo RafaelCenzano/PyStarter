@@ -67,12 +67,12 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
-    install_requires=['virtualenv==16.1.0','requests==2.20.1'],
+    install_requires=['virtualenv==16.1.0', 'requests==2.20.1'],
 
     # Data files
-    #package_data={
+    # package_data={
     #    'sample': ['package_data.dat'],
-    #},
+    # },
 
     # Adds CLI
     entry_points={
@@ -86,4 +86,4 @@ setup(
         'Bug Reports': 'https://github.com/RafaelCenzano/PyStarter/issues',
         'Source': 'https://github.com/RafaelCenzano/PyStarter',
     },
-    )
+)
