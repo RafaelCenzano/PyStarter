@@ -26,7 +26,7 @@ setup(
     long_description_content_type='text/x-rst',
 
     # Github home page
-    url='https://github.com/SavageCoder77/PyStarter',
+    url='https://github.com/RafaelCenzano/PyStarter',
 
     # Author
     author='Rafael Cenzano',
