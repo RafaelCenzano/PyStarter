@@ -6,12 +6,12 @@ def versionFind(type='int'):
     main_version = version_split[0]
     try:
         sub_version = version_split[1]
-    except:
+    except BaseException:
         sub_version = None
 
     try:
         sub_sub_version = version_split[2]
-    except:
+    except BaseException:
         sub_sub_version = None
 
     if type == 'int' or type == 'one' or type == 'first' or type == 1:
@@ -29,14 +29,14 @@ def versionFind(type='int'):
     else:
         raise MissingValue
 
+
 def findVenv():
     # import os
     try:
-        from os import path,listdir, getcwd
-    except:
+        from os import path, listdir, getcwd
+    except BaseException:
         print('Error with importing os')
         exit()
-
 
     command_path = getcwd()
 
@@ -50,8 +50,10 @@ def findVenv():
                         return item
     return None
 
+
 def Pythonfilecheck():
     pass
+
 
 def pystarterCommands():
     return ('''
