@@ -83,7 +83,7 @@ setup(
 
     # Additional links
     project_urls={
-        'Bug Reports': 'https://github.com/SavageCoder77/PyStarter/issues',
-        'Source': 'https://github.com/SavageCoder77/PyStarter',
+        'Bug Reports': 'https://github.com/RafaelCenzano/PyStarter/issues',
+        'Source': 'https://github.com/RafaelCenzano/PyStarter',
     },
     )
