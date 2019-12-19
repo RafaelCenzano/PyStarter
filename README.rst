@@ -8,6 +8,9 @@ it most useful for creating all need files, venvs, and more.
 .. image:: https://img.shields.io/pypi/v/PyStarter.svg
   :target: https://pypi.org/project/PyStarter
   :alt: Latest version on PyPi
+.. image:: https://img.shields.io/pypi/pyversions/PyStarter.svg
+  :target: https://pypi.org/project/PyStarter/
+  :alt: Supported Python versions
 .. image:: https://img.shields.io/github/license/RafaelCenzano/PyStarter.svg?style=flat-square  :alt: License Badge
 .. image:: https://img.shields.io/github/stars/RafaelCenzano/PyStarter.svg?style=flat-square  :alt: Stars Badge
 .. image:: https://img.shields.io/github/forks/RafaelCenzano/PyStarter.svg?style=flat-square  :alt: Forks Badge
