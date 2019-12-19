@@ -19,6 +19,9 @@ def findVenv():
     return None
 
 
+def pystarterVersion():
+    return '1.2.0'
+
 def Pythonfilecheck():
     pass
 
