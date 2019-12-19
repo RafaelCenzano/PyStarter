@@ -203,3 +203,6 @@ def main():
 
     else:
         print(pystarterCommands())
+
+if __name__ == '__main__':
+    main()
