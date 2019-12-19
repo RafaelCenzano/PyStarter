@@ -156,8 +156,8 @@ def main():
                 whichlicense = input(
                     'What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license) : ').lower()
 
-                if whichlicense == '1' or whichlicense == 'apache license 2.0' or whichlicense == 'apache' or whichlicense == 'apache license':
-                    url = 'https://gist.githubusercontent.com/RafaelCenzano/af203e37c70f074e164105313f572e59/raw/d18216a75ee3c25f81945889c832397c5e344e67/Apache2.0.txt'
+                if '1' in whichlicense or 'apache' in whichlicense:
+                    url = 'https://gist.githubusercontent.com/RafaelCenzano/af203e37c70f074e164105313f572e59/raw/a1f675994dfe20852493b924aa941eb85dcabbef/Apache2.0.txt'
                     r = requests.get(url)
                     LICENSE = r.content
 
@@ -169,7 +169,7 @@ def main():
 
                     break
 
-                elif whichlicense == '2' or whichlicense == 'mit' or whichlicense == 'mit license':
+                elif '2' in whichlicense or 'mit' in whichlicense:
                     url = 'https://gist.githubusercontent.com/RafaelCenzano/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
                     r = requests.get(url)
                     LICENSE = r.content
@@ -182,7 +182,7 @@ def main():
 
                     break
 
-                elif whichlicense == '3' or whichlicense == 'gnu' or whichlicense == 'gnu general public license' or whichlicense == 'general public license':
+                elif '3' in whichlicense or 'gnu' in whichlicense or 'general public license' in whichlicense:
                     url = 'https://gist.githubusercontent.com/RafaelCenzano/de69952598e851bc8d46bf5f42960fc3/raw/0fbbd2e2f1c869acf01b67027e50af7c1153cf55/GNU.txt'
                     r = requests.get(url)
                     LICENSE = r.content
@@ -195,7 +195,7 @@ def main():
 
                     break
 
-                elif whichlicense == 'none':
+                elif 'none' in whichlicense:
                     break
 
                 else:
