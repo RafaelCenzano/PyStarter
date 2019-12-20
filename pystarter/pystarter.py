@@ -40,20 +40,26 @@ Options you can use (do not use <> in command arguments):
 
 
 def MITLicense():
-    return ('''
+    from datetime import datetime
+    year = datetime.now().year
+    mitLicense = ('''
 MIT License
 
-Copyright (c) 2020 [NAME GOES HERE]
+Copyright (c) {} [NAME GOES HERE]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-            ''')
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'''.format(str(year)))
+
+    return mitLicense
+
 
 def APACHELicense():
-    return ('''
+    from datetime import datetime
+    year = datetime.now().year
+    apacheLicense = ('''
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -242,7 +248,7 @@ def APACHELicense():
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright 2020 [NAME GOES HERE]
+   Copyright {} [NAME GOES HERE]
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -254,11 +260,15 @@ def APACHELicense():
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
-   limitations under the License.
-            ''')
+   limitations under the License.'''.format(str(year)))
+
+    return apacheLicense
+
 
 def GNULicense():
-    return ('''
+    from datetime import datetime
+    year = datetime.now().year
+    gnuLicense = ('''
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
@@ -447,11 +457,12 @@ END OF TERMS AND CONDITIONS
 
 If the program does terminal interaction, make it output a short notice like this when it starts in an interactive mode:
 
-Copyright (C) 2020 [YOUR NAME HERE]
+Copyright (C) {} [YOUR NAME HERE]
 This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type `show c' for details.
 The hypothetical commands show w' and show c' should show the appropriate parts of the General Public License. Of course, your program's commands might be different; for a GUI interface, you would use an "about box".
 
-You should also get your employer (if you work as a programmer) or school, if any, to sign a "copyright disclaimer" for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see https://www.gnu.org/licenses/.
-            ''')
+You should also get your employer (if you work as a programmer) or school, if any, to sign a "copyright disclaimer" for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see https://www.gnu.org/licenses/.'''.format(str(year)))
+
+    return gnuLicense
