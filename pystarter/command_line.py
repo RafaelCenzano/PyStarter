@@ -36,12 +36,6 @@ def main():
             print('Error with importing subprocess')
             exit()
 
-        # universal input for both python 3 and 2
-        try:
-            input = raw_input
-        except NameError:
-            pass
-
         # Find the second argument
         try:
             second_arg = sys.argv[2].lower()
@@ -197,20 +191,24 @@ Author
                         break
 
                     elif 'none' in whichlicense:
+                        licenseType = 4
                         break
 
                     else:
                         print('\n\n\nThat is not and option\n\n')
 
-                LICENSEWRITE = open('LICENSE', 'w+')
-                LICENSEWRITE.write(str(LICENSE))
-                LICENSEWRITE.close()
+                if licenseType is not 4:
+                    LICENSEWRITE = open('LICENSE', 'w+')
+                    LICENSEWRITE.write(str(LICENSE))
+                    LICENSEWRITE.close()
 
-                print('You will need to add your name to the LICENSE')
-
-            except BaseException:
+                    print('You will need to add your name to the LICENSE')
+            
+            except ZeroDivisionError:
+            #except BaseException:
                 print('Error creating license')
                 exit()
+
 
         if README and isgit:
             READMEMD = open('README.md', 'w+')
@@ -280,6 +278,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details
                                ''')
+            elif licenseType == 4:
+                pass
             else:
                 READMEMD.write('''
 ## License
