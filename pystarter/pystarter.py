@@ -25,7 +25,6 @@ def pystarterVersion():
 
 def pystarterCommands():
     return ('''
-
 The command is used like this:
 pystarter create <option>
 
@@ -35,15 +34,13 @@ Options you can use (do not use <> in command arguments):
     <git> for git only projects
     <python> for python only projects
     or leave it blank for for projects with git and python
-
            ''')
 
 
 def MITLicense():
     from datetime import datetime
     year = datetime.now().year
-    mitLicense = ('''
-MIT License
+    mitLicense = ('''MIT License
 
 Copyright (c) {} [NAME GOES HERE]
 
@@ -268,8 +265,7 @@ def APACHELicense():
 def GNULicense():
     from datetime import datetime
     year = datetime.now().year
-    gnuLicense = ('''
-GNU GENERAL PUBLIC LICENSE
+    gnuLicense = ('''GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
 Copyright © 2007 Free Software Foundation, Inc. <https://fsf.org/>
