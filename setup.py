@@ -17,7 +17,7 @@ setup(
     version='1.2.0',
 
     # description
-    description='A program to help you start python and git project files and venvs',
+    description='A program to help you start python and git projects with file creations',
 
     # Long description used as pypi homepage
     long_description=long_description,
@@ -67,7 +67,7 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
-    install_requires=['virtualenv==16.7.9', 'requests==2.22.0'],
+    install_requires=['virtualenv==16.7.9'],
 
     # Data files
     # package_data={
