@@ -76,19 +76,27 @@ def main():
 
         # Create .gitignore
         if ignore == False and is_git_and_all == True:
+
             try:
+
+                print('Creating .gitignore')
+
                 gitignore = open('.gitignore', 'w+')
                 gitignore.write('*.DS_Store')
                 if not isgit:
                     gitignore.write('venv/')
                     gitignore.write('*.pyc')
                 gitignore.close()
+
             except BaseException:
                 print('Error creating .gitignore')
                 exit()
 
         # Create blank requirements.txt
         if requirements and is_python_and_all:
+
+            print('Creating requirements.txt')
+
             requirementstxt = open('requirements.txt', 'w+')
             requirementstxt.write('')
             requirementstxt.close()
@@ -112,10 +120,13 @@ def main():
 
         # Create python setup file and readme.rst for setup file
         if setup and is_python_and_all:
+
             try:
+
+                print('Creating setup.py\n')
+
                 setuppy = open('setup.py', 'w+')
-                setuppy.write('''
-from setuptools import setup, find_packages
+                setuppy.write('''from setuptools import setup, find_packages
 
 
 # Get Readme text
@@ -139,40 +150,49 @@ setup(
     url='Project URL',
     license=license,
     packages=find_packages(exclude=('tests', 'docs'))
-)
-                              ''')
+)''')
+                
                 setuppy.close()
+
                 print('Update fillers in setup.py for your project')
+
             except BaseException:
                 print('Error creating setup.py')
                 exit()
 
             try:
+
                 if not path.isfile('README.rst'):
+
                     readmerst = open('README.rst', 'w+')
-                    readmerst.write('''
-Project
+                    readmerst.write('''Project
 ========================
 
 Project description
 
-Author
-
-                                ''')
+Author''')
+                    
                     readmerst.close()
-                    print('Update fillers in Readme.rst for your project')
+
+                    print('Update fillers in Readme.rst for your project\n')
+
             except BaseException:
-                print('Error creating Readme.rst for setup.py')
+                print('Error creating Readme.rst for setup.py\n')
                 exit()
 
         # Create license
         if license and is_git_and_all:
 
             try:
+
+                print('Creating LICENSE\n')
+
                 LICENSE = ''
 
                 while True:
+
                     print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\n\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
+                    
                     whichlicense = input(
                         'What LICENSE would you like for you project (Choose the number or write out the whole name. Write \'none\' if you don\'t want a license) : ').lower()
 
@@ -199,6 +219,7 @@ Author
                         print('\n\n\nThat is not and option\n\n')
 
                 if licenseType is not 4:
+
                     LICENSEWRITE = open('LICENSE', 'w+')
                     LICENSEWRITE.write(str(LICENSE))
                     LICENSEWRITE.close()
@@ -211,9 +232,13 @@ Author
 
 
         if README and isgit:
-            READMEMD = open('README.md', 'w+')
-            READMEMD.write('''
-# Project
+
+            try:
+
+                print('Creating README.md\n')
+
+                READMEMD = open('README.md', 'w+')
+                READMEMD.write('''# Project
 
 Project Description
 
@@ -258,40 +283,44 @@ Report the failed test [here](issue link)!
 
 ## Authors
 
-* [**Author Name**](author link)
-                           ''')
-            if licenseType == 1:
-                READMEMD.write('''
-## License
+* [**Author Name**](author link)''')
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details
-                               ''')
-            elif licenseType == 2:
-                READMEMD.write('''
-## License
+                if licenseType == 1:
+                    READMEMD.write('''## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-                              ''')
-            elif licenseType == 3:
-                READMEMD.write('''
-## License
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
-This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details
-                               ''')
-            elif licenseType == 4:
-                pass
-            else:
-                READMEMD.write('''
-## License
+                elif licenseType == 2:
+                    READMEMD.write('''## License
 
-This project's here: [LICENSE](LICENSE)
-                               ''')
-                READMEMD.close()
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 3:
+                    READMEMD.write('''## License
+
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 4:
+                    pass
+
+                else:
+                    READMEMD.write('''## License
+
+This project's here: [LICENSE](LICENSE)''')
+                    READMEMD.close()
+
+                except:
+                    print('Error creating README')
+                    exit()
 
         if README and is_python_and_all:
-            READMEMD = open('README.md', 'w+')
-            READMEMD.write('''
-# Project
+
+            try:
+
+                print('Creating README.md\n')
+
+                READMEMD = open('README.md', 'w+')
+                READMEMD.write('''# Project
 
 Project Description
 
@@ -356,33 +385,29 @@ Report the failed test [here](issue link)!
 
 ## Authors
 
-* [**Author Name**](author link)
-                           ''')
-            if licenseType == 1:
-                READMEMD.write('''
-## License
+* [**Author Name**](author link)''')
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details
-                               ''')
-            elif licenseType == 2:
-                READMEMD.write('''
-## License
+                if licenseType == 1:
+                    READMEMD.write('''## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-                              ''')
-            elif licenseType == 3:
-                READMEMD.write('''
-## License
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
-This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details
-                               ''')
-            else:
-                READMEMD.write('''
-## License
+                elif licenseType == 2:
+                    READMEMD.write('''## License
 
-This project's here: [LICENSE](LICENSE)
-                               ''')
-                READMEMD.close()
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 3:
+                    READMEMD.write('''## License
+
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
+
+                else:
+                    READMEMD.write('''## License
+
+This project's here: [LICENSE](LICENSE)''')
+
+                    READMEMD.close()
 
     else:
         passedArgs = ''
