@@ -204,8 +204,7 @@ Author
 
                     print('You will need to add your name to the LICENSE')
             
-            except ZeroDivisionError:
-            #except BaseException:
+            except BaseException:
                 print('Error creating license')
                 exit()
 
