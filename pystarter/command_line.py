@@ -58,14 +58,14 @@ def main():
                 exit()
 
         # Check for files and directories for python
-        requirements = !path.isfile('requirements.txt')
-        setup = !path.isfile('setup.py')
-        runFile = !path.isfile('run.py')
+        requirements = not path.isfile('requirements.txt')
+        setup = not path.isfile('setup.py')
+        runFile = not path.isfile('run.py')
 
         # Check for files and directories for git
-        license = !path.isfile('LICENSE') and !path.isfile('LICENSE.txt')
-        ignore = !path.isfile('.gitignore')
-        README = !path.isfile('README.md') and !path.isfile('README.rst') and !path.isfile('README.txt')
+        license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
+        ignore = not path.isfile('.gitignore')
+        README = not path.isfile('README.md') and not path.isfile('README.rst') and not path.isfile('README.txt')
 
         # Check for what the second arg is
         ispython = second_arg == 'python'
@@ -84,7 +84,7 @@ def main():
             try:
                 gitignore = open('.gitignore', 'w+')
                 gitignore.write('*.DS_Store')
-                if !isgit:
+                if not isgit:
                     gitignore.write('venv/')
                     gitignore.write('*.pyc')
                 gitignore.close()
@@ -153,9 +153,9 @@ setup(
                 exit()
 
             try:
-                if path.isfile('')
-                readmerst = open('README.rst', 'w+')
-                readmerst.write('''
+                if not path.isfile('README.rst'):
+                    readmerst = open('README.rst', 'w+')
+                    readmerst.write('''
 Project
 ========================
 
@@ -164,8 +164,8 @@ Project description
 Author
 
                                 ''')
-                readmerst.close()
-                print('Update fillers in Readme.rst for your project')
+                    readmerst.close()
+                    print('Update fillers in Readme.rst for your project')
             except BaseException:
                 print('Error creating Readme.rst for setup.py')
                 exit()
