@@ -43,13 +43,14 @@ def main():
             second_arg = None
 
         # Check the second argument before proceeding
-        if second_arg is not None:
-            if second_arg != 'python' or second_arg != 'git':
-                print(
-                    str(second_arg)
-                    + ' is not an option for the create command\n')
-                print(pystarterCommands())
-                exit()
+        if second_arg == 'python' or second_arg == 'git' or second_arg == None:
+            pass
+        else:
+            print(
+                str(second_arg)
+                + ' is not an option for the create command\n')
+            print(pystarterCommands())
+            exit()
 
         # Check for files and directories for python
         requirements = not path.isfile('requirements.txt')
