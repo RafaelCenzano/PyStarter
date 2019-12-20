@@ -385,7 +385,10 @@ This project's here: [LICENSE](LICENSE)
                 READMEMD.close()
 
     else:
-        print('Command ' + sys.argv[1:] + ' not found.\n')
+        passedArgs = ''
+        for items in sys.argv[1:]:
+            passedArgs += items
+        print('Command ' + passedArgs + ' not found.')
         print(pystarterCommands())
 
 
