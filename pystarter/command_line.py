@@ -172,15 +172,9 @@ Author
 
         # Create license
         if license and is_git_and_all:
-            # import requests
-            try:
-                from requests import get as requestFile
-            except BaseException:
-                print('Error with importing requests')
-                exit()
 
             try:
-                url = ''
+                LICENSE = ''
 
                 while True:
                     print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\n\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
@@ -189,17 +183,17 @@ Author
 
                     if '1' in whichlicense or 'apache' in whichlicense:
                         licenseType = 1
-                        url = 'https://gist.githubusercontent.com/RafaelCenzano/af203e37c70f074e164105313f572e59/raw/a1f675994dfe20852493b924aa941eb85dcabbef/Apache2.0.txt'
+                        LICENSE = APACHELicense()
                         break
 
                     elif '2' in whichlicense or 'mit' in whichlicense:
                         licenseType = 2
-                        url = 'https://gist.githubusercontent.com/RafaelCenzano/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
+                        LICENSE = MITLicense()
                         break
 
                     elif '3' in whichlicense or 'gnu' in whichlicense or 'general public license' in whichlicense:
                         licenseType = 3
-                        url = 'https://gist.githubusercontent.com/RafaelCenzano/de69952598e851bc8d46bf5f42960fc3/raw/0fbbd2e2f1c869acf01b67027e50af7c1153cf55/GNU.txt'
+                        LICENSE = GNULicense()
                         break
 
                     elif 'none' in whichlicense:
@@ -207,9 +201,6 @@ Author
 
                     else:
                         print('\n\n\nThat is not and option\n\n')
-
-                r = requestFile(url)
-                LICENSE = r.content
 
                 LICENSEWRITE = open('LICENSE', 'w+')
                 LICENSEWRITE.write(str(LICENSE))
