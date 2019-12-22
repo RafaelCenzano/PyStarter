@@ -26,14 +26,14 @@ def main():
         try:
             from os import path
         except BaseException:
-            print('Error with importing os')
+            print('Error with importing os\n')
             exit()
 
         # import subprocess
         try:
             from subprocess import Popen, PIPE
         except BaseException:
-            print('Error with importing subprocess')
+            print('Error with importing subprocess\n')
             exit()
 
         # Find the second argument
@@ -43,12 +43,12 @@ def main():
             second_arg = None
 
         # Check the second argument before proceeding
-        if second_arg == 'python' or second_arg == 'git' or second_arg == None:
+        if second_arg == 'python' or second_arg == 'git' or second_arg is None:
             pass
         else:
             print(
-                str(second_arg)
-                + ' is not an option for the create command\n')
+                str(second_arg) +
+                ' is not an option for the create command\n')
             print(pystarterCommands())
             exit()
 
@@ -60,7 +60,8 @@ def main():
         # Check for files and directories for git
         license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
         ignore = not path.isfile('.gitignore')
-        README = not path.isfile('README.md') and not path.isfile('README.rst') and not path.isfile('README.txt')
+        README = not path.isfile('README.md') and not path.isfile(
+            'README.rst') and not path.isfile('README.txt')
 
         # Check for what the second arg is
         ispython = second_arg == 'python'
@@ -88,18 +89,28 @@ def main():
                     gitignore.write('*.pyc')
                 gitignore.close()
 
+                print('.gitignore created\n')
+
             except BaseException:
-                print('Error creating .gitignore')
+                print('Error creating .gitignore\n')
                 exit()
 
         # Create blank requirements.txt
         if requirements and is_python_and_all:
 
-            print('Creating requirements.txt')
+            try:
 
-            requirementstxt = open('requirements.txt', 'w+')
-            requirementstxt.write('')
-            requirementstxt.close()
+                print('Creating requirements.txt')
+
+                requirementstxt = open('requirements.txt', 'w+')
+                requirementstxt.write('')
+                requirementstxt.close()
+
+                print('requirements.txt created\n')
+
+            except BaseException:
+                print('Error creating requirements.txt\n')
+                exit()
 
         '''
         # Create venv for python
@@ -123,7 +134,7 @@ def main():
 
             try:
 
-                print('Creating setup.py\n')
+                print('Creating setup.py')
 
                 setuppy = open('setup.py', 'w+')
                 setuppy.write('''from setuptools import setup, find_packages
@@ -151,10 +162,10 @@ setup(
     license=license,
     packages=find_packages(exclude=('tests', 'docs'))
 )''')
-                
+
                 setuppy.close()
 
-                print('Update fillers in setup.py for your project')
+                print('setup.py created\n    Update fillers in setup.py for your project\n')
 
             except BaseException:
                 print('Error creating setup.py')
@@ -164,6 +175,8 @@ setup(
 
                 if not path.isfile('README.rst'):
 
+                    print('    Creating Readme.rst for setup.py')
+
                     readmerst = open('README.rst', 'w+')
                     readmerst.write('''Project
 ========================
@@ -171,10 +184,10 @@ setup(
 Project description
 
 Author''')
-                    
+
                     readmerst.close()
 
-                    print('Update fillers in Readme.rst for your project\n')
+                    print('        Update fillers in Readme.rst for your project\n')
 
             except BaseException:
                 print('Error creating Readme.rst for setup.py\n')
@@ -185,14 +198,22 @@ Author''')
 
             try:
 
-                print('Creating LICENSE\n')
+                print('Creating LICENSE')
 
                 LICENSE = ''
 
                 while True:
 
-                    print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\n\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
-                    
+                    print('''
+LICENSE options:
+  1. Apache License 2.0
+  2. MIT License
+  3. GNU General Public License
+
+More information here:
+  https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project
+                          ''')
+
                     whichlicense = input(
                         'What LICENSE would you like for you project (Choose the number or write out the whole name. Write \'none\' if you don\'t want a license) : ').lower()
 
@@ -216,26 +237,25 @@ Author''')
                         break
 
                     else:
-                        print('\n\n\nThat is not and option\n\n')
+                        print('\n\n' + whichlicense + ' is not an option\n\n')
 
                 if licenseType is not 4:
 
                     LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(str(LICENSE))
+                    LICENSEWRITE.write(LICENSE)
                     LICENSEWRITE.close()
 
-                    print('You will need to add your name to the LICENSE')
-            
+                    print('Update fillers in LICENSE for your project\n')
+
             except BaseException:
-                print('Error creating license')
+                print('Error creating license\n')
                 exit()
 
-
-        if README and isgit:
+        if README and is_git_and_all:
 
             try:
 
-                print('Creating README.md\n')
+                print('Creating README.md')
 
                 READMEMD = open('README.md', 'w+')
                 READMEMD.write('''# Project
@@ -309,29 +329,20 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 This project's here: [LICENSE](LICENSE)''')
                     READMEMD.close()
 
-                except:
-                    print('Error creating README')
-                    exit()
+            except BaseException:
+                print('Error creating README\n')
+                exit()
 
-        if README and is_python_and_all:
+        elif README and is_python_and_all:
 
             try:
 
-                print('Creating README.md\n')
+                print('Creating README.md')
 
                 READMEMD = open('README.md', 'w+')
                 READMEMD.write('''# Project
 
 Project Description
-
-## Setup
-
-Clone the repository and enter it
-
-```
-git clone <git clone url>
-cd <project name>
-```
 
 #### Requirements
 
@@ -409,11 +420,15 @@ This project's here: [LICENSE](LICENSE)''')
 
                     READMEMD.close()
 
+            except BaseException:
+                print('Error creating README\n')
+                exit()
+
     else:
         passedArgs = ''
         for items in sys.argv[1:]:
             passedArgs += items
-        print('Command ' + passedArgs + ' not found.')
+        print('Command ' + passedArgs + ' not found.\n')
         print(pystarterCommands())
 
 
