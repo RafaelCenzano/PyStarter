@@ -47,8 +47,8 @@ def main():
             pass
         else:
             print(
-                str(second_arg) +
-                ' is not an option for the create command\n')
+                str(second_arg)
+                + ' is not an option for the create command\n')
             print(pystarterCommands())
             exit()
 
@@ -148,7 +148,8 @@ setup(
 
                 setuppy.close()
 
-                print('setup.py created\n    Update fillers in setup.py for your project\n')
+                print(
+                    'setup.py created\n    Update fillers in setup.py for your project\n')
 
             except BaseException:
                 print('Error creating setup.py')
