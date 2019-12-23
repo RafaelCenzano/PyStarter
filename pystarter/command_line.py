@@ -2,9 +2,10 @@ from pystarter import *
 import sys
 
 
+# Main function for command line
 def main():
-    #args = sys.argv[1:]
 
+    # Get first argument
     try:
         first_arg = sys.argv[1].lower()
     except IndexError:
@@ -18,28 +19,22 @@ def main():
     elif first_arg == '--help' or first_arg == '-h':
         print(pystarterCommands())
 
-    # Main command to create needed files and things
+    # Main command to create files and venvs
     elif first_arg == 'create':
 
         # import os
         try:
             from os import path
         except BaseException:
-            print('Error with importing os')
+            print('Error with importing os\n')
             exit()
 
         # import subprocess
         try:
             from subprocess import Popen, PIPE
         except BaseException:
-            print('Error with importing subprocess')
+            print('Error with importing subprocess\n')
             exit()
-
-        # universal input
-        try:
-            input = raw_input
-        except NameError:
-            pass
 
         # Find the second argument
         try:
@@ -47,159 +42,378 @@ def main():
         except IndexError:
             second_arg = None
 
-        if second_arg is not None:
-            if second_arg != 'python':
-                if second_arg != 'git':
-                    print(
-                        str(second_arg) +
-                        ' is not an option for the create command\n')
-                    print(pystarterCommands)
-                    exit()
-
-        if path.isdir('.git'):
+        # Check the second argument before proceeding
+        if second_arg == 'python' or second_arg == 'git' or second_arg is None:
+            pass
+        else:
             print(
-                'Detected git folder.\nWould you like to include git file creation for the command\ny/n\n')
-            check_if_git = input('>')
-            if 'y' in check_if_git:
-                second_arg = 'git'
-
-        if Pythonfilecheck():
-            print(
-                'Detected python file.\nWould you like to include python file creation for the command\ny/n\n')
-            check_if_python = input('>')
-            if 'y' in check_if_python:
-                second_arg = 'python'
-
-        # Check if any README file exsists
-        README = True
-        if path.isfile('README.md') == False and path.isfile(
-                'README.rst') == False and path.isfile('README.txt') == False:
-            README = False
-
-        # Check for files and directories for git
-        requirements = path.isfile('requirements.txt')
-        setup = path.isfile('setup.py')
+                str(second_arg) +
+                ' is not an option for the create command\n')
+            print(pystarterCommands())
+            exit()
 
         # Check for files and directories for python
-        license = path.isfile('LICENSE') or path.isfile('LICENSE.txt')
-        ignore = path.isfile('.gitignore')
+        requirements = not path.isfile('requirements.txt')
+        setup = not path.isfile('setup.py')
+        runFile = not path.isfile('run.py')
+
+        # Check for files and directories for git
+        license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
+        ignore = not path.isfile('.gitignore')
+        README = not path.isfile('README.md') and not path.isfile(
+            'README.rst') and not path.isfile('README.txt')
 
         # Check for what the second arg is
         ispython = second_arg == 'python'
         isgit = second_arg == 'git'
         isall = second_arg is None
 
-        # Checks for (python option, git option) or just both
+        # Boolean variables for (python option, git option) or just both
         is_python_and_all = ispython or isall
         is_git_and_all = isgit or isall
 
-        # Create .gitignore for git
+        # Save license type
+        licenseType = 0
+
+        # Create .gitignore
         if ignore == False and is_git_and_all == True:
-            gitignore = open('.gitignore', 'w+')
-            gitignore.write('venv/\n')
-            gitignore.write('*.pyc\n')
-            gitignore.write('config.py\n')
-            gitignore.close()
 
-        if README == False and is_git_and_all == True and DidREADME == False:
-            dirname = path.dirname(__file__)
-            READMEMD = open('README.md', 'w+')
-            READMEMD.write('#' + str(dirname) + '\n\n\n')
-            READMEMD.close()
-            DidREADME = True
+            try:
 
-        if README2 == False and is_git_and_all == True and DidREADME == False:
-            dirname = path.dirname(__file__)
-            READMERST = open('README.rst', 'w+')
-            lengthdirname = len(dirname)
-            count = 0
-            while count < lengthdirname:
-                READMERST.write('=')
-                count += 1
-            READMERST.write('\n' + str(dirname) + '\n')
-            count = 0
-            while count < lengthdirname:
-                READMERST.write('=')
-                count += 1
-            READMERST.write('\n\n\n')
-            READMERST.close()
-            DidREADME = True
+                print('Creating .gitignore')
 
-        # Create requirements.txt if it doesn't exsist and the user wants it
-        # created
-        if requirements == False and is_python_and_all == True:
-            requirementstxt = open('requirements.txt', 'w+')
-            requirementstxt.write(' ')
-            requirementstxt.close()
+                gitignore = open('.gitignore', 'w+')
+                gitignore.write('*.DS_Store')
+                if not isgit:
+                    gitignore.write('venv/')
+                    gitignore.write('*.pyc')
+                gitignore.close()
 
-        # Create venv for python
-        if findVenv() is not None and is_python_and_all:
-            venv = Popen(
-                ['virtualenv venv'],
-                stdout=PIPE,
-                stderr=PIPE,
-                shell=True)
-            (out, err) = venv.communicate()
+                print('.gitignore created\n')
 
-        if setup == False and is_python_and_all == True:
-            setuppy = open('setup.py', 'w+')
-            setuppy.write('import sys')
-            setuppy.write('import os')
-            setuppy.close()
+            except BaseException:
+                print('Error creating .gitignore\n')
+                exit()
 
-        if license == False and is_git_and_all == True:
-            from builtins import input
-            import requests
+        # Create blank requirements.txt
+        if requirements and is_python_and_all:
 
-            while True:
-                print('\nLICENSE options:\n1. Apache License 2.0\n2. MIT License\n3. GNU General Public License\n\nMore information here:\nhttps://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project\n')
-                whichlicense = input(
-                    'What LICENSE would you like for you project (Choose the number or write out the whole name. Write none is you don\'t want a license) : ').lower()
+            try:
 
-                if '1' in whichlicense or 'apache' in whichlicense:
-                    url = 'https://gist.githubusercontent.com/RafaelCenzano/af203e37c70f074e164105313f572e59/raw/a1f675994dfe20852493b924aa941eb85dcabbef/Apache2.0.txt'
-                    r = requests.get(url)
-                    LICENSE = r.content
+                print('Creating requirements.txt')
+
+                requirementstxt = open('requirements.txt', 'w+')
+                requirementstxt.write('')
+                requirementstxt.close()
+
+                print('requirements.txt created\n')
+
+            except BaseException:
+                print('Error creating requirements.txt\n')
+                exit()
+
+        # Create python setup file and readme.rst for setup file
+        if setup and is_python_and_all:
+
+            try:
+
+                print('Creating setup.py')
+
+                setuppy = open('setup.py', 'w+')
+                setuppy.write('''from setuptools import setup, find_packages
+
+
+# Get Readme text
+with open('README.rst') as f:
+    readme = f.read()
+
+
+# Get License text
+with open('LICENSE') as f:
+    license = f.read()
+
+
+# Run setup
+setup(
+    name='Project-Name',
+    version='0.0.0',
+    description='Project description',
+    long_description=readme,
+    author='Your Name',
+    author_email='email@domain.com',
+    url='Project URL',
+    license=license,
+    packages=find_packages(exclude=('tests', 'docs'))
+)''')
+
+                setuppy.close()
+
+                print('setup.py created\n    Update fillers in setup.py for your project\n')
+
+            except BaseException:
+                print('Error creating setup.py')
+                exit()
+
+            try:
+
+                if not path.isfile('README.rst'):
+
+                    print('    Creating Readme.rst for setup.py')
+
+                    readmerst = open('README.rst', 'w+')
+                    readmerst.write('''Project
+========================
+
+Project description
+
+Author''')
+
+                    readmerst.close()
+
+                    print('        Update fillers in Readme.rst for your project\n')
+
+            except BaseException:
+                print('Error creating Readme.rst for setup.py\n')
+                exit()
+
+        # Create license
+        if license and is_git_and_all:
+
+            try:
+
+                print('Creating LICENSE')
+
+                LICENSE = ''
+
+                while True:
+
+                    print('''
+LICENSE options:
+  1. Apache License 2.0
+  2. MIT License
+  3. GNU General Public License
+
+More information here:
+  https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project
+                          ''')
+
+                    whichlicense = input(
+                        'What LICENSE would you like for you project (Choose the number or write out the whole name. Write \'none\' if you don\'t want a license) : ').lower()
+
+                    if '1' in whichlicense or 'apache' in whichlicense:
+                        licenseType = 1
+                        LICENSE = APACHELicense()
+                        break
+
+                    elif '2' in whichlicense or 'mit' in whichlicense:
+                        licenseType = 2
+                        LICENSE = MITLicense()
+                        break
+
+                    elif '3' in whichlicense or 'gnu' in whichlicense or 'general public license' in whichlicense:
+                        licenseType = 3
+                        LICENSE = GNULicense()
+                        break
+
+                    elif 'none' in whichlicense:
+                        licenseType = 4
+                        break
+
+                    else:
+                        print('\n\n' + whichlicense + ' is not an option\n\n')
+
+                if licenseType is not 4:
 
                     LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(str(LICENSE))
+                    LICENSEWRITE.write(LICENSE)
                     LICENSEWRITE.close()
 
-                    print('You will need to add your name to the LICENSE')
+                    print('Update fillers in LICENSE for your project\n')
 
-                    break
+            except BaseException:
+                print('Error creating license\n')
+                exit()
 
-                elif '2' in whichlicense or 'mit' in whichlicense:
-                    url = 'https://gist.githubusercontent.com/RafaelCenzano/8b0528ef01117657117b489bee831728/raw/46b65a070289a090df8a144c72ec38c19349ffa2/MIT.txt'
-                    r = requests.get(url)
-                    LICENSE = r.content
+        if README and is_git_and_all:
 
-                    LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(str(LICENSE))
-                    LICENSEWRITE.close()
+            try:
 
-                    print('You will need to add your name to the LICENSE')
+                print('Creating README.md')
 
-                    break
+                READMEMD = open('README.md', 'w+')
+                READMEMD.write('''# Project
 
-                elif '3' in whichlicense or 'gnu' in whichlicense or 'general public license' in whichlicense:
-                    url = 'https://gist.githubusercontent.com/RafaelCenzano/de69952598e851bc8d46bf5f42960fc3/raw/0fbbd2e2f1c869acf01b67027e50af7c1153cf55/GNU.txt'
-                    r = requests.get(url)
-                    LICENSE = r.content
+Project Description
 
-                    LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(str(LICENSE))
-                    LICENSEWRITE.close()
+## Setup
 
-                    print('You will need to add your name to the LICENSE')
+Clone the repository and enter it
 
-                    break
+```
+git clone <git clone url>
+cd <project name>
+```
 
-                elif 'none' in whichlicense:
-                    break
+#### Requirements
+
+Run the make command to install requirements
+
+```
+requirement install command
+```
+
+## Running the program
+
+Run description
+
+```
+run command
+```
+
+## Running the tests
+
+```
+run test command
+```
+
+#### What are the tests checking
+
+test check for ...
+
+#### What happens when a test fails
+
+Report the failed test [here](issue link)!
+
+## Authors
+
+* [**Author Name**](author link)''')
+
+                if licenseType == 1:
+                    READMEMD.write('''## License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 2:
+                    READMEMD.write('''## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 3:
+                    READMEMD.write('''## License
+
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 4:
+                    pass
 
                 else:
-                    print('\n\n\nThat is not and option\n\n')
+                    READMEMD.write('''## License
+
+This project's here: [LICENSE](LICENSE)''')
+                    READMEMD.close()
+
+            except BaseException:
+                print('Error creating README\n')
+                exit()
+
+        elif README and is_python_and_all:
+
+            try:
+
+                print('Creating README.md')
+
+                READMEMD = open('README.md', 'w+')
+                READMEMD.write('''# Project
+
+Project Description
+
+#### Requirements
+
+[Use a virtualenv to create an isolated enviorment](https://virtualenv.pypa.io/en/latest/)
+
+Run the make command to install requirements
+
+```
+make
+```
+
+or with pip manually
+
+```
+pip install -r requirements.txt
+```
+
+## Running the program
+
+Run description
+
+```
+make run
+```
+
+or with python manually
+
+```
+python run.py
+```
+
+## Running the tests
+
+```
+make test
+```
+
+or manually with ...
+
+```
+run test command
+```
+
+#### What are the tests checking
+
+test check for ...
+
+#### What happens when a test fails
+
+Report the failed test [here](issue link)!
+
+## Authors
+
+* [**Author Name**](author link)''')
+
+                if licenseType == 1:
+                    READMEMD.write('''## License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 2:
+                    READMEMD.write('''## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
+
+                elif licenseType == 3:
+                    READMEMD.write('''## License
+
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
+
+                else:
+                    READMEMD.write('''## License
+
+This project's license here: [LICENSE](LICENSE)''')
+
+                    READMEMD.close()
+
+            except BaseException:
+                print('Error creating README\n')
+                exit()
 
     else:
+        passedArgs = ''
+        for items in sys.argv[1:]:
+            passedArgs += items
+        print('Command ' + passedArgs + ' not found.\n')
         print(pystarterCommands())
+
+
+if __name__ == '__main__':
+    main()

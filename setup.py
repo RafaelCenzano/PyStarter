@@ -14,10 +14,10 @@ setup(
     name='PyStarter',
 
     # Version
-    version='1.2.0',
+    version='1.2.1',
 
     # description
-    description='A program to help you start python and git project files and venvs',
+    description='A program to help you start python and git projects with file creations',
 
     # Long description used as pypi homepage
     long_description=long_description,
@@ -51,8 +51,7 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
+        # Python 2 no support 2020 same with PyStarter!
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
@@ -61,13 +60,13 @@ setup(
     ],
 
     # Keywords/Tags
-    keywords='pystarter git python venv virtualenv',
+    keywords='pystarter git python',
 
     # says what package your importing
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
-    install_requires=['virtualenv==16.7.9', 'requests==2.22.0'],
+    install_requires=[''],
 
     # Data files
     # package_data={
