@@ -73,6 +73,8 @@ setup(
     #    'sample': ['package_data.dat'],
     # },
 
+    python_requires='>=3.4',
+
     # Adds CLI
     entry_points={
         'console_scripts': [
