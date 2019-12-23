@@ -60,13 +60,13 @@ setup(
     ],
 
     # Keywords/Tags
-    keywords='pystarter git python venv virtualenv',
+    keywords='pystarter git python',
 
     # says what package your importing
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
-    install_requires=['virtualenv==16.7.9'],
+    install_requires=[''],
 
     # Data files
     # package_data={
