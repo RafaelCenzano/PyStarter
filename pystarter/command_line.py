@@ -416,7 +416,7 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
                 else:
                     READMEMD.write('''## License
 
-This project's here: [LICENSE](LICENSE)''')
+This project's license here: [LICENSE](LICENSE)''')
 
                     READMEMD.close()
 
