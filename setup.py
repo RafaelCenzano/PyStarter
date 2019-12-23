@@ -66,12 +66,14 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
-    install_requires=[''],
+    install_requires=[],
 
     # Data files
     # package_data={
     #    'sample': ['package_data.dat'],
     # },
+
+    python_requires='>=3.4',
 
     # Adds CLI
     entry_points={
