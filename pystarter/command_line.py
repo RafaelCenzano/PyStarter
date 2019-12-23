@@ -112,23 +112,6 @@ def main():
                 print('Error creating requirements.txt\n')
                 exit()
 
-        '''
-        # Create venv for python
-        if findVenv() is not None and is_python_and_all:
-            try:
-                venv = Popen(
-                    ['virtualenv venv'],
-                    stdout=PIPE,
-                    stderr=PIPE,
-                    shell=True)
-                (out, err) = venv.communicate()
-                print(out)
-                print('Virtualenv created')
-            except BaseException:
-                print('Error creating Virtualenv')
-                exit()
-        '''
-
         # Create python setup file and readme.rst for setup file
         if setup and is_python_and_all:
 
