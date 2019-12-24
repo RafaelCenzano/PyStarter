@@ -79,11 +79,14 @@ def main():
             elif arguments == 'all':
                 isall = True
 
+        if not isall and ispython and isgit:
+            isall = True
+        
         # Save license type
         licenseType = 0
 
         # Create run.py
-        if runFile and is_python_and_all:
+        if runFile and ispython or isall:
 
             try:
 
