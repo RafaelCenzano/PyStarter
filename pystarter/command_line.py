@@ -166,7 +166,7 @@ with open('LICENSE') as f:
 # Run setup
 setup(
     name='Project-Name',
-    version='0.0.0',
+    version='1.0.0',
     description='Project description',
     long_description=readme,
     author='Your Name',
