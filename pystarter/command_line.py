@@ -38,17 +38,15 @@ def main():
 
         # Find the second argument
         try:
-            second_arg = sys.argv[2].lower()
+            args = sys.argv[2:].lower()
         except IndexError:
-            second_arg = None
+            args = ['all']
 
         # Check the second argument before proceeding
-        if second_arg == 'python' or second_arg == 'git' or second_arg is None:
+        if 'python' in args or 'git' in args or 'all' in args:
             pass
         else:
-            print(
-                str(second_arg)
-                + ' is not an option for the create command\n')
+            print('No valid arguments passed for create command')
             print(pystarterCommands())
             exit()
 
@@ -56,6 +54,7 @@ def main():
         requirements = not path.isfile('requirements.txt')
         setup = not path.isfile('setup.py')
         runFile = not path.isfile('run.py')
+        makeFile = not path.isfile('Makefile')
 
         # Check for files and directories for git
         license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
@@ -64,9 +63,21 @@ def main():
             'README.rst') and not path.isfile('README.txt')
 
         # Check for what the second arg is
-        ispython = second_arg == 'python'
-        isgit = second_arg == 'git'
-        isall = second_arg is None
+        ispython = False
+        isgit = False
+        isall = False
+
+        # loop through arguments
+        for arguments in args:
+
+            if arguments == 'python':
+                ispython = True
+
+            elif arguments == 'git':
+                isgit = True
+
+            elif arguments == 'all':
+                isall = True
 
         # Boolean variables for (python option, git option) or just both
         is_python_and_all = ispython or isall
@@ -75,8 +86,49 @@ def main():
         # Save license type
         licenseType = 0
 
+        # Create run.py
+        if runFile and is_python_and_all:
+
+            try:
+
+                print('Creating run.py')
+
+                runPy = open('run.py', 'w+')
+                runPy.write('')
+                runPy.close()
+
+                print('run.py created\n')
+
+            except BaseException:
+                print('Error creating run.py\n')
+                exit()
+
+        if makeFile and is_python_and_all:
+
+            try:
+
+                print('Creating run.py')
+
+                makeFileWrite = open('run.py', 'w+')
+                runPy.write('''
+init:
+    pip3 install -r requirements.txt
+
+test:
+    add test command here
+
+run:
+    python3 run.py''')
+                runPy.close()
+
+                print('run.py created\n')
+
+            except BaseException:
+                print('Error creating run.py\n')
+                exit()
+
         # Create .gitignore
-        if ignore == False and is_git_and_all == True:
+        if ignore and is_git_and_all:
 
             try:
 
@@ -87,6 +139,7 @@ def main():
                 if not isgit:
                     gitignore.write('venv/')
                     gitignore.write('*.pyc')
+                    gitignore.write('__pycache__/')
                 gitignore.close()
 
                 print('.gitignore created\n')
@@ -119,8 +172,8 @@ def main():
 
                 print('Creating setup.py')
 
-                setuppy = open('setup.py', 'w+')
-                setuppy.write('''from setuptools import setup, find_packages
+                setupPy = open('setup.py', 'w+')
+                setupPy.write('''from setuptools import setup, find_packages
 
 
 # Get Readme text
@@ -146,7 +199,7 @@ setup(
     packages=find_packages(exclude=('tests', 'docs'))
 )''')
 
-                setuppy.close()
+                setupPy.close()
 
                 print(
                     'setup.py created\n    Update fillers in setup.py for your project\n')
