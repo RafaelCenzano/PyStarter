@@ -74,15 +74,13 @@ def main():
 
         if not isall and ispython and isgit:
             isall = True
-        
+
         # Save license type
         licenseType = 0
-
 
         '''
         Python file creation
         '''
-
 
         # Create run.py
         if runFile and isall or ispython:
@@ -150,7 +148,8 @@ run:
                 print('Creating setup.py')
 
                 setupPyWrite = open('setup.py', 'w+')
-                setupPyWrite.write('''from setuptools import setup, find_packages
+                setupPyWrite.write(
+                    '''from setuptools import setup, find_packages
 
 
 # Get Readme text
@@ -264,7 +263,7 @@ More information here:
             except BaseException:
                 print('Error creating license\n')
                 exit()
-                
+
         # Create .gitignore
         if ignore and isall or isgit:
 
@@ -285,7 +284,6 @@ More information here:
             except BaseException:
                 print('Error creating .gitignore\n')
                 exit()
-
 
         if README and isall or isgit:
 
@@ -363,7 +361,7 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
                     ReadmeMdWrite.write('''## License
 
 This project's here: [LICENSE](LICENSE)''')
-                
+
                 ReadmeMdWrite.close()
 
             except BaseException:
