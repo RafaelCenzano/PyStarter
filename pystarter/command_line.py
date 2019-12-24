@@ -85,8 +85,14 @@ def main():
         # Save license type
         licenseType = 0
 
+
+        '''
+        Python file creation
+        '''
+
+
         # Create run.py
-        if runFile and ispython or isall:
+        if runFile and isall or ispython:
 
             try:
 
@@ -102,7 +108,7 @@ def main():
                 print('Error creating run.py\n')
                 exit()
 
-        if makeFile and is_python_and_all:
+        if makeFile and isall or ispython:
 
             try:
 
@@ -126,29 +132,8 @@ run:
                 print('Error creating run.py\n')
                 exit()
 
-        # Create .gitignore
-        if ignore and is_git_and_all:
-
-            try:
-
-                print('Creating .gitignore')
-
-                gitignore = open('.gitignore', 'w+')
-                gitignore.write('*.DS_Store')
-                if not isgit:
-                    gitignore.write('venv/')
-                    gitignore.write('*.pyc')
-                    gitignore.write('__pycache__/')
-                gitignore.close()
-
-                print('.gitignore created\n')
-
-            except BaseException:
-                print('Error creating .gitignore\n')
-                exit()
-
         # Create blank requirements.txt
-        if requirements and is_python_and_all:
+        if requirements and isall or ispython:
 
             try:
 
@@ -165,7 +150,7 @@ run:
                 exit()
 
         # Create python setup file and readme.rst for setup file
-        if setup and is_python_and_all:
+        if setup and isall or ispython:
 
             try:
 
@@ -286,6 +271,28 @@ More information here:
             except BaseException:
                 print('Error creating license\n')
                 exit()
+                
+        # Create .gitignore
+        if ignore and isall or isgit:
+
+            try:
+
+                print('Creating .gitignore')
+
+                gitignore = open('.gitignore', 'w+')
+                gitignore.write('*.DS_Store')
+                if not isgit:
+                    gitignore.write('venv/')
+                    gitignore.write('*.pyc')
+                    gitignore.write('__pycache__/')
+                gitignore.close()
+
+                print('.gitignore created\n')
+
+            except BaseException:
+                print('Error creating .gitignore\n')
+                exit()
+
 
         if README and is_git_and_all:
 
