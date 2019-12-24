@@ -67,7 +67,7 @@ def main():
         isgit = False
         isall = False
 
-        # loop through arguments
+        # Check arguments by looping through and checking
         for arguments in args:
 
             if arguments == 'python':
@@ -78,10 +78,6 @@ def main():
 
             elif arguments == 'all':
                 isall = True
-
-        # Boolean variables for (python option, git option) or just both
-        is_python_and_all = ispython or isall
-        is_git_and_all = isgit or isall
 
         # Save license type
         licenseType = 0
