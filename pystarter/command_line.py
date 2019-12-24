@@ -363,7 +363,8 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
                     ReadmeMdWrite.write('''## License
 
 This project's here: [LICENSE](LICENSE)''')
-                    ReadmeMdWrite.close()
+                
+                ReadmeMdWrite.close()
 
             except BaseException:
                 print('Error creating README\n')
@@ -454,7 +455,7 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 
 This project's license here: [LICENSE](LICENSE)''')
 
-                    ReadmeMdWrite.close()
+                ReadmeMdWrite.close()
 
             except BaseException:
                 print('Error creating README\n')
