@@ -29,13 +29,6 @@ def main():
             print('Error with importing os\n')
             exit()
 
-        # import subprocess
-        try:
-            from subprocess import Popen, PIPE
-        except BaseException:
-            print('Error with importing subprocess\n')
-            exit()
-
         # Find the second argument
         try:
             args = sys.argv[2:].lower()
