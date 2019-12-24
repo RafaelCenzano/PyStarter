@@ -31,7 +31,7 @@ def main():
 
         # Find the second argument
         try:
-            args = sys.argv[2:].lower()
+            args = sys.argv[2:]
         except IndexError:
             args = ['all']
 
@@ -63,13 +63,15 @@ def main():
         # Check arguments by looping through and checking
         for arguments in args:
 
-            if arguments == 'python':
+            checkArg = arguments.lower()
+
+            if checkArg == 'python':
                 ispython = True
 
-            elif arguments == 'git':
+            elif checkArg == 'git':
                 isgit = True
 
-            elif arguments == 'all':
+            elif checkArg == 'all':
                 isall = True
 
         if not isall and ispython and isgit:
