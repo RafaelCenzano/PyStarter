@@ -91,9 +91,9 @@ def main():
 
                 print('Creating run.py')
 
-                runPy = open('run.py', 'w+')
-                runPy.write('')
-                runPy.close()
+                runPyWrite = open('run.py', 'w+')
+                runPyWrite.write('')
+                runPyWrite.close()
 
                 print('run.py created\n')
 
@@ -105,10 +105,10 @@ def main():
 
             try:
 
-                print('Creating run.py')
+                print('Creating Makefile')
 
-                makeFileWrite = open('run.py', 'w+')
-                runPy.write('''
+                makeFileWrite = open('Makefile', 'w+')
+                makeFileWrite.write('''
 init:
     pip3 install -r requirements.txt
 
@@ -117,9 +117,9 @@ test:
 
 run:
     python3 run.py''')
-                runPy.close()
+                makeFileWrite.close()
 
-                print('run.py created\n')
+                print('Makefile created\n')
 
             except BaseException:
                 print('Error creating run.py\n')
@@ -132,9 +132,9 @@ run:
 
                 print('Creating requirements.txt')
 
-                requirementstxt = open('requirements.txt', 'w+')
-                requirementstxt.write('')
-                requirementstxt.close()
+                requirementsTxtWrite = open('requirements.txt', 'w+')
+                requirementsTxtWrite.write('')
+                requirementsTxtWrite.close()
 
                 print('requirements.txt created\n')
 
@@ -149,8 +149,8 @@ run:
 
                 print('Creating setup.py')
 
-                setupPy = open('setup.py', 'w+')
-                setupPy.write('''from setuptools import setup, find_packages
+                setupPyWrite = open('setup.py', 'w+')
+                setupPyWrite.write('''from setuptools import setup, find_packages
 
 
 # Get Readme text
@@ -176,7 +176,7 @@ setup(
     packages=find_packages(exclude=('tests', 'docs'))
 )''')
 
-                setupPy.close()
+                setupPyWrite.close()
 
                 print(
                     'setup.py created\n    Update fillers in setup.py for your project\n')
@@ -191,15 +191,15 @@ setup(
 
                     print('    Creating Readme.rst for setup.py')
 
-                    readmerst = open('README.rst', 'w+')
-                    readmerst.write('''Project
+                    readmeRstWrite = open('README.rst', 'w+')
+                    readmeRstWrite.write('''Project
 ========================
 
 Project description
 
 Author''')
 
-                    readmerst.close()
+                    readmeRstWrite.close()
 
                     print('        Update fillers in Readme.rst for your project\n')
 
@@ -208,11 +208,11 @@ Author''')
                 exit()
 
         # Create license
-        if license and is_git_and_all:
+        if license and isall or isgit:
 
             try:
 
-                print('Creating LICENSE')
+                print('Creating LICENSE\n')
 
                 LICENSE = ''
 
@@ -255,9 +255,9 @@ More information here:
 
                 if licenseType is not 4:
 
-                    LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(LICENSE)
-                    LICENSEWRITE.close()
+                    LicenseWrite = open('LICENSE', 'w+')
+                    LicenseWrite.write(LICENSE)
+                    LicenseWrite.close()
 
                     print('Update fillers in LICENSE for your project\n')
 
@@ -272,13 +272,13 @@ More information here:
 
                 print('Creating .gitignore')
 
-                gitignore = open('.gitignore', 'w+')
-                gitignore.write('*.DS_Store')
-                if not isgit:
-                    gitignore.write('venv/')
-                    gitignore.write('*.pyc')
-                    gitignore.write('__pycache__/')
-                gitignore.close()
+                gitignoreWrite = open('.gitignore', 'w+')
+                gitignoreWrite.write('*.DS_Store')
+                if isall or ispython:
+                    gitignoreWrite.write('venv/')
+                    gitignoreWrite.write('*.pyc')
+                    gitignoreWrite.write('__pycache__/')
+                gitignoreWrite.close()
 
                 print('.gitignore created\n')
 
@@ -287,14 +287,14 @@ More information here:
                 exit()
 
 
-        if README and is_git_and_all:
+        if README and isall or isgit:
 
             try:
 
                 print('Creating README.md')
 
-                READMEMD = open('README.md', 'w+')
-                READMEMD.write('''# Project
+                ReadmeMdWrite = open('README.md', 'w+')
+                ReadmeMdWrite.write('''# Project
 
 Project Description
 
@@ -342,17 +342,17 @@ Report the failed test [here](issue link)!
 * [**Author Name**](author link)''')
 
                 if licenseType == 1:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 2:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 3:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
 
@@ -360,10 +360,10 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
                     pass
 
                 else:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project's here: [LICENSE](LICENSE)''')
-                    READMEMD.close()
+                    ReadmeMdWrite.close()
 
             except BaseException:
                 print('Error creating README\n')
@@ -375,8 +375,8 @@ This project's here: [LICENSE](LICENSE)''')
 
                 print('Creating README.md')
 
-                READMEMD = open('README.md', 'w+')
-                READMEMD.write('''# Project
+                ReadmeMdWrite = open('README.md', 'w+')
+                ReadmeMdWrite.write('''# Project
 
 Project Description
 
@@ -435,26 +435,26 @@ Report the failed test [here](issue link)!
 * [**Author Name**](author link)''')
 
                 if licenseType == 1:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 2:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 3:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
 
                 else:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project's license here: [LICENSE](LICENSE)''')
 
-                    READMEMD.close()
+                    ReadmeMdWrite.close()
 
             except BaseException:
                 print('Error creating README\n')
