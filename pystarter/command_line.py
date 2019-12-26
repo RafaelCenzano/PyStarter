@@ -1,4 +1,5 @@
 from pystarter import *
+from license import *
 import sys
 
 
@@ -48,6 +49,7 @@ def main():
         setup = not path.isfile('setup.py')
         runFile = not path.isfile('run.py')
         makeFile = not path.isfile('Makefile')
+
 
         # Check for files and directories for git
         license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
