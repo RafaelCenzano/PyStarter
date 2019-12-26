@@ -10,7 +10,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 # Get License text
-with open('LICENSE') as f:
+with open('LICENSE.txt') as f:
     licenseText = f.read()
 
 setup(
