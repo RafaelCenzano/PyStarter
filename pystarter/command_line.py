@@ -122,7 +122,7 @@ run:
                 print('Makefile created\n')
 
             except BaseException:
-                print('Error creating run.py\n')
+                print('Error creating Makefile\n')
                 exit()
 
         # Create blank requirements.txt
@@ -183,7 +183,7 @@ setup(
                     'setup.py created\n    Update fillers in setup.py for your project\n')
 
             except BaseException:
-                print('Error creating setup.py')
+                print('Error creating setup.py\n')
                 exit()
 
             try:
@@ -213,7 +213,7 @@ Author''')
 
             try:
 
-                print('Creating LICENSE\n')
+                print('Creating LICENSE')
 
                 LICENSE = ''
 
@@ -287,7 +287,7 @@ More information here:
                 print('Error creating .gitignore\n')
                 exit()
 
-        if README and isall or isgit:
+        if README and isgit and not isall:
 
             try:
 
@@ -308,8 +308,6 @@ cd <project name>
 ```
 
 #### Requirements
-
-Run the make command to install requirements
 
 ```
 requirement install command
@@ -370,7 +368,7 @@ This project's here: [LICENSE](LICENSE)''')
                 print('Error creating README\n')
                 exit()
 
-        elif README and is_python_and_all:
+        elif README and isall:
 
             try:
 
@@ -394,7 +392,7 @@ make
 or with pip manually
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Running the program
@@ -408,7 +406,7 @@ make run
 or with python manually
 
 ```
-python run.py
+python3 run.py
 ```
 
 ## Running the tests
@@ -417,7 +415,7 @@ python run.py
 make test
 ```
 
-or manually with ...
+or with ... manually
 
 ```
 run test command
