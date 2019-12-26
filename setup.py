@@ -9,12 +9,16 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
+# Get License text
+with open('LICENSE.txt') as f:
+    licenseText = f.read()
+
 setup(
     # Name of package
     name='PyStarter',
 
     # Version
-    version='1.2.1',
+    version='1.3.0',
 
     # description
     description='A program to help you start python and git projects with file creations',
@@ -24,6 +28,9 @@ setup(
 
     # Stating long description is .rst
     long_description_content_type='text/x-rst',
+
+    # License
+    license=licenseText,
 
     # Github home page
     url='https://github.com/RafaelCenzano/PyStarter',
@@ -66,7 +73,7 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
-    install_requires=[],
+    #install_requires=[],
 
     # Data files
     # package_data={

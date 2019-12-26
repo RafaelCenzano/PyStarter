@@ -1,4 +1,5 @@
 from pystarter import *
+from license import *
 import sys
 
 
@@ -19,6 +20,12 @@ def main():
     elif first_arg == '--help' or first_arg == '-h':
         print(pystarterCommands())
 
+    # Python Cache cleaner
+    elif first_arg == 'clean':
+        print('Cleaning out .pyc files and __pycache__ folders')
+        cacheCleaner()
+        print('Project cleaned')
+
     # Main command to create files and venvs
     elif first_arg == 'create':
 
@@ -29,26 +36,17 @@ def main():
             print('Error with importing os\n')
             exit()
 
-        # import subprocess
-        try:
-            from subprocess import Popen, PIPE
-        except BaseException:
-            print('Error with importing subprocess\n')
-            exit()
-
         # Find the second argument
         try:
-            second_arg = sys.argv[2].lower()
+            args = sys.argv[2:]
         except IndexError:
-            second_arg = None
+            args = ['all']
 
         # Check the second argument before proceeding
-        if second_arg == 'python' or second_arg == 'git' or second_arg is None:
+        if 'python' in args or 'git' in args or 'all' in args:
             pass
         else:
-            print(
-                str(second_arg)
-                + ' is not an option for the create command\n')
+            print('No valid arguments passed for create command')
             print(pystarterCommands())
             exit()
 
@@ -56,6 +54,8 @@ def main():
         requirements = not path.isfile('requirements.txt')
         setup = not path.isfile('setup.py')
         runFile = not path.isfile('run.py')
+        makeFile = not path.isfile('Makefile')
+
 
         # Check for files and directories for git
         license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
@@ -64,47 +64,85 @@ def main():
             'README.rst') and not path.isfile('README.txt')
 
         # Check for what the second arg is
-        ispython = second_arg == 'python'
-        isgit = second_arg == 'git'
-        isall = second_arg is None
+        ispython = False
+        isgit = False
+        isall = False
 
-        # Boolean variables for (python option, git option) or just both
-        is_python_and_all = ispython or isall
-        is_git_and_all = isgit or isall
+        # Check arguments by looping through and checking
+        for arguments in args:
+
+            checkArg = arguments.lower()
+
+            if checkArg == 'python':
+                ispython = True
+
+            elif checkArg == 'git':
+                isgit = True
+
+            elif checkArg == 'all':
+                isall = True
+
+        if not isall and ispython and isgit:
+            isall = True
 
         # Save license type
         licenseType = 0
 
-        # Create .gitignore
-        if ignore == False and is_git_and_all == True:
+        '''
+        Python file creation
+        '''
+
+        # Create run.py
+        if runFile and isall or ispython:
 
             try:
 
-                print('Creating .gitignore')
+                print('Creating run.py')
 
-                gitignore = open('.gitignore', 'w+')
-                gitignore.write('*.DS_Store')
-                if not isgit:
-                    gitignore.write('venv/')
-                    gitignore.write('*.pyc')
-                gitignore.close()
+                runPyWrite = open('run.py', 'w+')
+                runPyWrite.write('')
+                runPyWrite.close()
 
-                print('.gitignore created\n')
+                print('run.py created\n')
 
             except BaseException:
-                print('Error creating .gitignore\n')
+                print('Error creating run.py\n')
+                exit()
+
+        if makeFile and isall or ispython:
+
+            try:
+
+                print('Creating Makefile')
+
+                makeFileWrite = open('Makefile', 'w+')
+                makeFileWrite.write('''
+init:
+    pip3 install -r requirements.txt
+
+test:
+    add test command here
+
+run:
+    python3 run.py''')
+                makeFileWrite.close()
+
+                print('Makefile created\n')
+
+            except BaseException:
+                print('Error creating Makefile\n')
                 exit()
 
         # Create blank requirements.txt
-        if requirements and is_python_and_all:
+        if requirements and isall or ispython:
 
             try:
 
                 print('Creating requirements.txt')
 
-                requirementstxt = open('requirements.txt', 'w+')
-                requirementstxt.write('')
-                requirementstxt.close()
+                requirementsTxtWrite = open('requirements.txt', 'w+')
+                requirementsTxtWrite.write('')
+                requirementsTxtWrite.close()
 
                 print('requirements.txt created\n')
 
@@ -113,14 +151,15 @@ def main():
                 exit()
 
         # Create python setup file and readme.rst for setup file
-        if setup and is_python_and_all:
+        if setup and isall or ispython:
 
             try:
 
                 print('Creating setup.py')
 
-                setuppy = open('setup.py', 'w+')
-                setuppy.write('''from setuptools import setup, find_packages
+                setupPyWrite = open('setup.py', 'w+')
+                setupPyWrite.write(
+                    '''from setuptools import setup, find_packages
 
 
 # Get Readme text
@@ -136,7 +175,7 @@ with open('LICENSE') as f:
 # Run setup
 setup(
     name='Project-Name',
-    version='0.0.0',
+    version='1.0.0',
     description='Project description',
     long_description=readme,
     author='Your Name',
@@ -146,13 +185,13 @@ setup(
     packages=find_packages(exclude=('tests', 'docs'))
 )''')
 
-                setuppy.close()
+                setupPyWrite.close()
 
                 print(
                     'setup.py created\n    Update fillers in setup.py for your project\n')
 
             except BaseException:
-                print('Error creating setup.py')
+                print('Error creating setup.py\n')
                 exit()
 
             try:
@@ -161,15 +200,15 @@ setup(
 
                     print('    Creating Readme.rst for setup.py')
 
-                    readmerst = open('README.rst', 'w+')
-                    readmerst.write('''Project
+                    readmeRstWrite = open('README.rst', 'w+')
+                    readmeRstWrite.write('''Project
 ========================
 
 Project description
 
 Author''')
 
-                    readmerst.close()
+                    readmeRstWrite.close()
 
                     print('        Update fillers in Readme.rst for your project\n')
 
@@ -178,7 +217,7 @@ Author''')
                 exit()
 
         # Create license
-        if license and is_git_and_all:
+        if license and isall or isgit:
 
             try:
 
@@ -225,9 +264,9 @@ More information here:
 
                 if licenseType is not 4:
 
-                    LICENSEWRITE = open('LICENSE', 'w+')
-                    LICENSEWRITE.write(LICENSE)
-                    LICENSEWRITE.close()
+                    LicenseWrite = open('LICENSE', 'w+')
+                    LicenseWrite.write(LICENSE)
+                    LicenseWrite.close()
 
                     print('Update fillers in LICENSE for your project\n')
 
@@ -235,14 +274,35 @@ More information here:
                 print('Error creating license\n')
                 exit()
 
-        if README and is_git_and_all:
+        # Create .gitignore
+        if ignore and isall or isgit:
+
+            try:
+
+                print('Creating .gitignore')
+
+                gitignoreWrite = open('.gitignore', 'w+')
+                gitignoreWrite.write('*.DS_Store')
+                if isall or ispython:
+                    gitignoreWrite.write('venv/')
+                    gitignoreWrite.write('*.pyc')
+                    gitignoreWrite.write('__pycache__/')
+                gitignoreWrite.close()
+
+                print('.gitignore created\n')
+
+            except BaseException:
+                print('Error creating .gitignore\n')
+                exit()
+
+        if README and isgit and not isall:
 
             try:
 
                 print('Creating README.md')
 
-                READMEMD = open('README.md', 'w+')
-                READMEMD.write('''# Project
+                ReadmeMdWrite = open('README.md', 'w+')
+                ReadmeMdWrite.write('''# Project
 
 Project Description
 
@@ -256,8 +316,6 @@ cd <project name>
 ```
 
 #### Requirements
-
-Run the make command to install requirements
 
 ```
 requirement install command
@@ -290,17 +348,17 @@ Report the failed test [here](issue link)!
 * [**Author Name**](author link)''')
 
                 if licenseType == 1:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 2:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 3:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
 
@@ -308,23 +366,24 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
                     pass
 
                 else:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project's here: [LICENSE](LICENSE)''')
-                    READMEMD.close()
+
+                ReadmeMdWrite.close()
 
             except BaseException:
                 print('Error creating README\n')
                 exit()
 
-        elif README and is_python_and_all:
+        elif README and isall:
 
             try:
 
                 print('Creating README.md')
 
-                READMEMD = open('README.md', 'w+')
-                READMEMD.write('''# Project
+                ReadmeMdWrite = open('README.md', 'w+')
+                ReadmeMdWrite.write('''# Project
 
 Project Description
 
@@ -341,7 +400,7 @@ make
 or with pip manually
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Running the program
@@ -355,7 +414,7 @@ make run
 or with python manually
 
 ```
-python run.py
+python3 run.py
 ```
 
 ## Running the tests
@@ -364,7 +423,7 @@ python run.py
 make test
 ```
 
-or manually with ...
+or with ... manually
 
 ```
 run test command
@@ -383,26 +442,26 @@ Report the failed test [here](issue link)!
 * [**Author Name**](author link)''')
 
                 if licenseType == 1:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 2:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 3:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
 
                 else:
-                    READMEMD.write('''## License
+                    ReadmeMdWrite.write('''## License
 
 This project's license here: [LICENSE](LICENSE)''')
 
-                    READMEMD.close()
+                ReadmeMdWrite.close()
 
             except BaseException:
                 print('Error creating README\n')

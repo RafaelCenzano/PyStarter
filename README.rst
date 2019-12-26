@@ -42,10 +42,14 @@ Example Command:
 
 ``pystarter create``
 
-This command creates a venv and other helpful files needed for python and git projects
+This command creates project files for python and git projects
 
 This command has 2 extra options that you type after the above command. One to create only git ready or only python ready projects.
-The two options: *pystarter create git*, *pystarter create python*
+The two options: *pystarter create git*, *pystarter create python*, *pystarter create all*, *pystarter create python git*
+
+``pystarter clean``
+
+This command removed *.pyc* and *pycache* folders in your project to remove cached files
 
 To get full command list run:
 
