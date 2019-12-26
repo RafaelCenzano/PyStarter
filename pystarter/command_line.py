@@ -20,6 +20,12 @@ def main():
     elif first_arg == '--help' or first_arg == '-h':
         print(pystarterCommands())
 
+    # Python Cache cleaner
+    elif first_arg == 'clean':
+        print('Cleaning out .pyc files and __pycache__ folders')
+        cacheCleaner()
+        print('Project cleaned')
+
     # Main command to create files and venvs
     elif first_arg == 'create':
 
