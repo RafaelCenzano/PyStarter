@@ -45,7 +45,7 @@ Example Command:
 This command creates project files for python and git projects
 
 This command has 2 extra options that you type after the above command. One to create only git ready or only python ready projects.
-The two options: *pystarter create git*, *pystarter create python*, *pystarter create all*, *pystarter create python git*
+The options are: *pystarter create git*, *pystarter create python*, *pystarter create all*, *pystarter create python git*
 
 ``pystarter clean``
 
