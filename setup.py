@@ -26,7 +26,7 @@ setup(
     long_description=long_description,
 
     # Stating long description is .md
-    long_description_content_type='text/markdown'
+    long_description_content_type='text/markdown',
 
     # License
     license=licenseText,
