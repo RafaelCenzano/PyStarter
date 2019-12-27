@@ -1,7 +1,5 @@
 from setuptools import setup, find_packages
 from os import path
-# io.open is needed for projects that support Python 2.7
-from io import open
 
 # Get long description
 this_directory = path.abspath(path.dirname(__file__))
