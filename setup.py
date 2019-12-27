@@ -3,15 +3,14 @@ from os import path
 # io.open is needed for projects that support Python 2.7
 from io import open
 
-here = path.abspath(path.dirname(__file__))
-
-# Get the long description from the README file
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
+# Get long description
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as fR:
+    long_description = fR.read()
 
 # Get License text
-with open('LICENSE.txt') as f:
-    licenseText = f.read()
+with open(path.join(this_directory, 'LICENSE.txt'), encoding='utf-8') as fL:
+    licenseText = fL.read()
 
 setup(
     # Name of package
@@ -26,8 +25,8 @@ setup(
     # Long description used as pypi homepage
     long_description=long_description,
 
-    # Stating long description is .rst
-    long_description_content_type='text/x-rst',
+    # Stating long description is .md
+    long_description_content_type='text/markdown'
 
     # License
     license=licenseText,
@@ -93,5 +92,5 @@ setup(
     project_urls={
         'Bug Reports': 'https://github.com/RafaelCenzano/PyStarter/issues',
         'Source': 'https://github.com/RafaelCenzano/PyStarter',
-    },
+    }
 )
