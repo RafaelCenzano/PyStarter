@@ -526,29 +526,9 @@ This project's license here: [LICENSE](LICENSE)''')
         print('Command ' + passedArgs + ' not found.\n')
         print(pystarterCommands())
 
-def findVenv():
-    # import os
-    try:
-        from os import path, listdir, getcwd
-    except BaseException:
-        print('Error with importing os')
-        exit()
-
-    command_path = getcwd()
-
-    for item in listdir(command_path):
-        if path.isdir(item):
-            print('dirs ' + str(item))
-            for dirs in listdir(path.join(command_path, item)):
-                if path.isdir(path.join(command_path, item, dirs)):
-                    print('dirs ' + str(item) + ' in ' + str(dirs))
-                    if dirs == 'bin' or dirs == 'Scripts':
-                        return item
-    return None
-
 
 def pystarterVersion():
-    return '1.3.5'
+    return '1.4.0'
 
 
 def pystarterCommands():
