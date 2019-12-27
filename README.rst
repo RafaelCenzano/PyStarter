@@ -22,9 +22,7 @@ it most useful for creating all need files, venvs, and more.
   :alt: Forks Badge
 
 
-Typical usage often looks like this::
-
-    pystarter create
+Typical usage often looks like this::pystarter create
 
 This command will start creating your python and git ready project.
 
