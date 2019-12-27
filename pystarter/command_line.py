@@ -1,5 +1,4 @@
 from pystarter import *
-from license import *
 import sys
 
 
