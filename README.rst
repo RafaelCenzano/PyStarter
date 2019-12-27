@@ -49,7 +49,7 @@ The options are: *pystarter create git*, *pystarter create python*, *pystarter c
 
 ``pystarter clean``
 
-This command removed *.pyc* and *pycache* folders in your project to remove cached files
+This command removes compiled python (*pyc*) files and *pycache* folders in your project
 
 To get full command list run:
 
