@@ -216,7 +216,7 @@ setup(
         'Topic :: Software Development :: Build Tools',
 
         # Pick your license as you wish
-        'License :: OSI Approved :: MIT License',
+        #'License :: OSI Approved :: MIT License',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
@@ -257,7 +257,12 @@ setup(
     #    'Bug Reports': '',
     #    'Source': '',
     #},
-)''')
+)
+
+# setup.py generated using PyStarter
+# https://pypi.org/project/PyStarter/
+# pip3 install pystarter
+# The above message can be deleted, it does not effect the python code.''')
 
                 setupPyWrite.close()
 
@@ -422,6 +427,12 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 
 This project's here: [LICENSE](LICENSE)''')
 
+                ReadmeMdWrite.write('''
+This Readme was created with pystarter
+
+```
+pip3 install pystarter
+```''')
                 ReadmeMdWrite.close()
 
             except BaseException:
@@ -513,6 +524,12 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 
 This project's license here: [LICENSE](LICENSE)''')
 
+                ReadmeMdWrite.write('''
+This Readme was created with pystarter
+
+```
+pip3 install pystarter
+```''')
                 ReadmeMdWrite.close()
 
             except BaseException:
