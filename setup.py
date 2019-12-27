@@ -28,6 +28,9 @@ setup(
     # Stating long description is .md
     long_description_content_type='text/markdown',
 
+    # License
+    license=licenseText,
+
     # Github home page
     url='https://github.com/RafaelCenzano/PyStarter',
 
