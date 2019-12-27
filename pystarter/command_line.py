@@ -160,29 +160,105 @@ run:
                 setupPyWrite = open('setup.py', 'w+')
                 setupPyWrite.write(
                     '''from setuptools import setup, find_packages
+import os
+from os import path
 
+currentDir = os.getcwd()
 
 # Get Readme text
-with open('README.rst') as f:
-    readme = f.read()
+with open(path.join(currentDir, 'README.md'), encoding='utf-8') as fR:
+    readme = fR.read()
 
 
 # Get License text
-with open('LICENSE') as f:
-    license = f.read()
+with open(path.join(currentDir, 'LICENSE'), encoding='utf-8') as fL:
+    licenseText = fL.read()
 
 
 # Run setup
 setup(
+
+    # Project name
     name='Project-Name',
+
+    # Project version number
+    # Major.Moderate.Minor values
     version='1.0.0',
+
+    # Project description
     description='Project description',
+
+    # Project long description
     long_description=readme,
+
+    # Define markdown long description type
+    long_description_content_type='text/markdown'
+
+    # Author name
     author='Your Name',
+
+    # Author contact
     author_email='email@domain.com',
+
+    # License text
+    license=licenseText,
+
+    # Project home page
     url='Project URL',
-    license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+
+    # Classifiers help users find your project by categorizing it.
+    classifiers=[
+        # How mature is this project? Common values are
+        #   3 - Alpha
+        #   4 - Beta
+        #   5 - Production/Stable
+        'Development Status :: 3 - Alpha',
+
+        # Indicate who your project is intended for
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Build Tools',
+
+        # Pick your license as you wish
+        'License :: OSI Approved :: MIT License',
+
+        # Specify the Python versions you support here. In particular, ensure
+        # that you indicate whether you support Python 2, Python 3 or both.
+        # Python 2 no support as of 2020
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+    ],
+
+    # Keywords/Tags
+    keywords='project keywords',
+
+    # says what package your importing
+    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+
+    # Needed installs
+    #install_requires=[],
+
+    # Data files
+    # package_data={
+    #    'sample': ['package_data.dat'],
+    # },
+
+    #python_requires='>=3.4',
+
+    # Adds CLI
+    #entry_points={
+    #    'console_scripts': [
+    #        'sample cli command = projectName.FileName:FunctionName',
+    #    ],
+    #},
+
+    # Additional links
+    # project_urls={
+    #    'Bug Reports': '',
+    #    'Source': '',
+    #},
 )''')
 
                 setupPyWrite.close()
@@ -192,28 +268,6 @@ setup(
 
             except BaseException:
                 print('Error creating setup.py\n')
-                exit()
-
-            try:
-
-                if not path.isfile('README.rst'):
-
-                    print('    Creating Readme.rst for setup.py')
-
-                    readmeRstWrite = open('README.rst', 'w+')
-                    readmeRstWrite.write('''Project
-========================
-
-Project description
-
-Author''')
-
-                    readmeRstWrite.close()
-
-                    print('        Update fillers in Readme.rst for your project\n')
-
-            except BaseException:
-                print('Error creating Readme.rst for setup.py\n')
                 exit()
 
         # Create license
