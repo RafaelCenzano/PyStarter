@@ -3,9 +3,13 @@
 PyStarter starter provides an easy way to start a git or python projects with helpful file creation.
 
 ![Version](https://img.shields.io/pypi/v/PyStarter.svg)
+
 ![Supported python versions](https://img.shields.io/pypi/pyversions/PyStarter.svg)
+
 ![License badge](https://img.shields.io/github/license/RafaelCenzano/PyStarter.svg)
+
 ![GitHub stars](https://img.shields.io/github/stars/RafaelCenzano/PyStarter.svg)
+
 ![GitHub forks](https://img.shields.io/github/forks/RafaelCenzano/PyStarter.svg)
 
 ## Usage
