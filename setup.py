@@ -17,7 +17,7 @@ setup(
     name='PyStarter',
 
     # Version
-    version='1.3.2',
+    version='1.3.3',
 
     # description
     description='A program to help you start python and git projects with file creations',
@@ -29,7 +29,7 @@ setup(
     long_description_content_type='text/markdown',
 
     # License
-    license=licenseText,
+    #license=licenseText,
 
     # Github home page
     url='https://github.com/RafaelCenzano/PyStarter',
