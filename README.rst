@@ -22,27 +22,16 @@ it most useful for creating all need files, venvs, and more.
   :alt: Forks Badge
 
 
-Typical usage often looks like this::pystarter create
-
-This command will start creating your python and git ready project.
-
-
-Authors
-=======
-
-1. Rafael Cenzano
-
-
 Usage
 =====
 
-Example Command:
+Main Commands:
 
 ``pystarter create``
 
 This command creates project files for python and git projects
 
-This command has 2 extra options that you type after the above command. One to create only git ready or only python ready projects.
+This command has 3 extra options. One to create git ready, one to create python ready projects, and one to create both python and git ready projects.
 The options are: *pystarter create git*, *pystarter create python*, *pystarter create all*, *pystarter create python git*
 
 ``pystarter clean``
@@ -56,3 +45,15 @@ To get full command list run:
 or
 
 ``pystarter --help``
+
+
+Authors
+=======
+
+1. Rafael Cenzano
+
+
+License
+=======
+
+This project is licensed under the MIT License
