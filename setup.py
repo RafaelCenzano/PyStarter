@@ -8,16 +8,12 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as fR:
     long_description = fR.read()
 
-# Get License text
-with open(path.join(this_directory, 'LICENSE.txt'), encoding='utf-8') as fL:
-    licenseText = fL.read()
-
 setup(
     # Name of package
     name='PyStarter',
 
     # Version
-    version='1.3.5',
+    version='1.4.0',
 
     # description
     description='A program to help you start python and git projects with file creations',
@@ -27,9 +23,6 @@ setup(
 
     # Stating long description is .md
     long_description_content_type='text/markdown',
-
-    # License
-    #license=licenseText,
 
     # Github home page
     url='https://github.com/RafaelCenzano/PyStarter',
