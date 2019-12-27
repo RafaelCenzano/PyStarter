@@ -17,7 +17,7 @@ setup(
     name='PyStarter',
 
     # Version
-    version='1.3.0',
+    version='1.3.1',
 
     # description
     description='A program to help you start python and git projects with file creations',
@@ -39,6 +39,12 @@ setup(
 
     # Contact info
     author_email='savagecoder77@gmail.com',
+
+    # Maintainer
+    maintainer='Rafael Cenzano',
+
+    # Maintainer email
+    maintainer_email='savagecoder77@gmail.com',
 
     # Classifiers help users find your project by categorizing it.
     classifiers=[
