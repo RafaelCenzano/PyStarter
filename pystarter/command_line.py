@@ -548,12 +548,13 @@ def findVenv():
 
 
 def pystarterVersion():
-    return '1.3.4'
+    return '1.3.5'
 
 
 def pystarterCommands():
     return ('''
-The command is used like this:
+Command list:
+
 pystarter create <option>
 
 option can be left blank
@@ -561,7 +562,12 @@ option can be left blank
 Options you can use (do not use <> in command arguments):
     <git> for git only projects
     <python> for python only projects
+    <all> for both git and python projects
     or leave it blank for for projects with git and python
+
+pystarter clean
+
+Clean out pyc files and __pycache__ files
            ''')
 
 
