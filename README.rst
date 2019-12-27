@@ -1,8 +1,7 @@
 PyStarter
+=========
 
-
-PyStarter starter provides an easy way to start a git project specifically python projects from the command line. You might find
-it most useful for creating all need files, venvs, and more.
+PyStarter starter provides an easy way to start a git or python projects with helpful file creation.
 
 .. image:: https://img.shields.io/pypi/v/PyStarter.svg
   :target: https://pypi.org/project/PyStarter
@@ -26,7 +25,7 @@ it most useful for creating all need files, venvs, and more.
 
 
 Usage
-
+=====
 
 Main Commands:
 
@@ -51,12 +50,12 @@ or
 
 
 Authors
-
+=======
 
 1. Rafael Cenzano
 
 
 License
-
+=======
 
 This project is licensed under the MIT License
