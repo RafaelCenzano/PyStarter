@@ -571,9 +571,11 @@ def cacheCleaner():
                     pathsToRemoveFiles.append(os.path.join(pathToFolder,dirsChecking,f))
     for paths in pathsToRemoveFiles:
         if os.path.exists(paths):
+            print(paths)
             os.remove(paths)
     for paths in pathsToRemoveDirs:
         if os.path.exists(paths):
+            print(paths)
             shutil.rmtree(paths)
 
 def MITLicense():
