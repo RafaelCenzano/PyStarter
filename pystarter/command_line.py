@@ -158,50 +158,49 @@ run:
                 setupPyWrite = open('setup.py', 'w+')
                 setupPyWrite.write(
                     '''from setuptools import setup, find_packages
-import os
-from os import path
+from os import getcwd, path
 
-currentDir = os.getcwd()
+currentDir = getcwd()
 
 # Get Readme text
 with open(path.join(currentDir, 'README.md'), encoding='utf-8') as fR:
     readme = fR.read()
 
 
-# Get License text
-with open(path.join(currentDir, 'LICENSE'), encoding='utf-8') as fL:
-    licenseText = fL.read()
-
-
 # Run setup
 setup(
 
-    # Project name
+    # Project's name
     name='Project-Name',
 
-    # Project version number
+    # Project's version number
     # Major.Moderate.Minor values
     version='1.0.0',
 
-    # Project description
+    # Project's description
     description='Project description',
 
-    # Project long description
+    # Project's long description
+    # Readme can't have links to external pages but 
+    # external badges and images are permitted
     long_description=readme,
 
     # Define markdown long description type
     long_description_content_type='text/markdown'
 
-    # Author name
+    # Author's name
     author='Your Name',
 
-    # Author contact
+    # Author's contact
     author_email='email@domain.com',
 
-    # License text
-    license=licenseText,
+    # Maintainer's name
+    maintainer='Your Name',
 
-    # Project home page
+    # Maintainer's email
+    maintainer_email='email@domain.com',
+
+    # Project's home page
     url='Project URL',
 
     # Classifiers help users find your project by categorizing it.
@@ -217,11 +216,11 @@ setup(
         'Topic :: Software Development :: Build Tools',
 
         # Pick your license as you wish
-        'License :: OSI Approved :: MIT License',
+        #'License :: OSI Approved :: MIT License',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        # Python 2 no support as of 2020
+        # Python 2 loses support as of 2020
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
@@ -232,7 +231,7 @@ setup(
     # Keywords/Tags
     keywords='project keywords',
 
-    # says what package your importing
+    # Finds project files
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 
     # Needed installs
@@ -243,6 +242,7 @@ setup(
     #    'sample': ['package_data.dat'],
     # },
 
+    # Python requirement
     #python_requires='>=3.4',
 
     # Adds CLI
@@ -253,11 +253,16 @@ setup(
     #},
 
     # Additional links
-    # project_urls={
+    #project_urls={
     #    'Bug Reports': '',
     #    'Source': '',
     #},
-)''')
+)
+
+# setup.py generated using PyStarter
+# https://pypi.org/project/PyStarter/
+# pip3 install pystarter
+# The above message can be deleted, it does not effect the python code.''')
 
                 setupPyWrite.close()
 
@@ -422,6 +427,12 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 
 This project's here: [LICENSE](LICENSE)''')
 
+                ReadmeMdWrite.write('''
+This Readme was created with pystarter
+
+```
+pip3 install pystarter
+```''')
                 ReadmeMdWrite.close()
 
             except BaseException:
@@ -513,6 +524,12 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 
 This project's license here: [LICENSE](LICENSE)''')
 
+                ReadmeMdWrite.write('''
+This Readme was created with pystarter
+
+```
+pip3 install pystarter
+```''')
                 ReadmeMdWrite.close()
 
             except BaseException:
@@ -526,29 +543,9 @@ This project's license here: [LICENSE](LICENSE)''')
         print('Command ' + passedArgs + ' not found.\n')
         print(pystarterCommands())
 
-def findVenv():
-    # import os
-    try:
-        from os import path, listdir, getcwd
-    except BaseException:
-        print('Error with importing os')
-        exit()
-
-    command_path = getcwd()
-
-    for item in listdir(command_path):
-        if path.isdir(item):
-            print('dirs ' + str(item))
-            for dirs in listdir(path.join(command_path, item)):
-                if path.isdir(path.join(command_path, item, dirs)):
-                    print('dirs ' + str(item) + ' in ' + str(dirs))
-                    if dirs == 'bin' or dirs == 'Scripts':
-                        return item
-    return None
-
 
 def pystarterVersion():
-    return '1.3.5'
+    return '1.4.0'
 
 
 def pystarterCommands():
@@ -591,9 +588,11 @@ def cacheCleaner():
                     pathsToRemoveFiles.append(os.path.join(pathToFolder,dirsChecking,f))
     for paths in pathsToRemoveFiles:
         if os.path.exists(paths):
+            print('deleting file: ' + paths)
             os.remove(paths)
     for paths in pathsToRemoveDirs:
         if os.path.exists(paths):
+            print('deleting folder:' + paths)
             shutil.rmtree(paths)
 
 def MITLicense():
