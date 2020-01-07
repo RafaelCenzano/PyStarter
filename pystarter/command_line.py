@@ -49,22 +49,22 @@ def main():
             exit()
 
         # Check for files and directories for python
-        requirements = not path.isfile('requirements.txt')
         setup = not path.isfile('setup.py')
         runFile = not path.isfile('run.py')
         makeFile = not path.isfile('Makefile')
+        requirements = not path.isfile('requirements.txt')
 
 
         # Check for files and directories for git
-        license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
         ignore = not path.isfile('.gitignore')
         README = not path.isfile('README.md') and not path.isfile(
             'README.rst') and not path.isfile('README.txt')
+        license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
 
         # Check for what the second arg is
-        ispython = False
         isgit = False
         isall = False
+        ispython = False
 
         # Check arguments by looping through and checking
         for arguments in args:
