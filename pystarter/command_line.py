@@ -49,22 +49,22 @@ def main():
             exit()
 
         # Check for files and directories for python
-        requirements = not path.isfile('requirements.txt')
         setup = not path.isfile('setup.py')
         runFile = not path.isfile('run.py')
         makeFile = not path.isfile('Makefile')
+        requirements = not path.isfile('requirements.txt')
 
 
         # Check for files and directories for git
-        license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
         ignore = not path.isfile('.gitignore')
         README = not path.isfile('README.md') and not path.isfile(
             'README.rst') and not path.isfile('README.txt')
+        license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
 
         # Check for what the second arg is
-        ispython = False
         isgit = False
         isall = False
+        ispython = False
 
         # Check arguments by looping through and checking
         for arguments in args:
@@ -341,9 +341,10 @@ More information here:
                 gitignoreWrite = open('.gitignore', 'w+')
                 gitignoreWrite.write('*.DS_Store')
                 if isall or ispython:
-                    gitignoreWrite.write('venv/')
-                    gitignoreWrite.write('*.pyc')
-                    gitignoreWrite.write('__pycache__/')
+                    gitignoreWrite.write('''
+venv/
+*.pyc
+__pycache__/''')
                 gitignoreWrite.close()
 
                 print('.gitignore created\n')
@@ -402,7 +403,9 @@ Report the failed test [here](issue link)!
 
 ## Authors
 
-* [**Author Name**](author link)''')
+* [**Author Name**](author link)
+
+''')
 
                 if licenseType == 1:
                     ReadmeMdWrite.write('''## License
@@ -525,6 +528,8 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 This project's license here: [LICENSE](LICENSE)''')
 
                 ReadmeMdWrite.write('''
+
+
 This Readme was created with pystarter
 
 ```
@@ -545,7 +550,7 @@ pip3 install pystarter
 
 
 def pystarterVersion():
-    return '1.4.0'
+    return '1.4.1'
 
 
 def pystarterCommands():

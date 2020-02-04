@@ -1,5 +1,5 @@
 def pystarterVersion():
-    return '1.4.0'
+    return '1.4.1'
 
 
 def pystarterCommands():
