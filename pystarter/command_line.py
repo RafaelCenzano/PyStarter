@@ -341,9 +341,10 @@ More information here:
                 gitignoreWrite = open('.gitignore', 'w+')
                 gitignoreWrite.write('*.DS_Store')
                 if isall or ispython:
-                    gitignoreWrite.write('venv/')
-                    gitignoreWrite.write('*.pyc')
-                    gitignoreWrite.write('__pycache__/')
+                    gitignoreWrite.write('''
+venv/
+*.pyc
+__pycache__/''')
                 gitignoreWrite.close()
 
                 print('.gitignore created\n')
@@ -402,7 +403,9 @@ Report the failed test [here](issue link)!
 
 ## Authors
 
-* [**Author Name**](author link)''')
+* [**Author Name**](author link)
+
+''')
 
                 if licenseType == 1:
                     ReadmeMdWrite.write('''## License
@@ -525,6 +528,8 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 This project's license here: [LICENSE](LICENSE)''')
 
                 ReadmeMdWrite.write('''
+
+
 This Readme was created with pystarter
 
 ```
