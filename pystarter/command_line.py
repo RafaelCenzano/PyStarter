@@ -530,7 +530,7 @@ This project's license here: [LICENSE](LICENSE)''')
                 ReadmeMdWrite.write('''
 
 
-This Readme was created with pystarter
+This Readme was created with [pystarter](https://github.com/RafaelCenzano/PyStarter)
 
 ```
 pip3 install pystarter
@@ -550,7 +550,7 @@ pip3 install pystarter
 
 
 def pystarterVersion():
-    return '1.4.1'
+    return '1.4.2'
 
 
 def pystarterCommands():
