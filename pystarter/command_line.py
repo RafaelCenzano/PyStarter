@@ -116,13 +116,16 @@ def main():
                 makeFileWrite = open('Makefile', 'w+')
                 makeFileWrite.write('''
 init:
-    pip3 install -r requirements.txt
+\tpip3 install -r requirements.txt
+
+clean:
+\tpystarter clean
 
 test:
-    add test command here
+\tpytest
 
-run:
-    python3 run.py''')
+run: clean
+\tpython3 run.py''')
                 makeFileWrite.close()
 
                 print('Makefile created\n')
