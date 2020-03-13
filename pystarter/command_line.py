@@ -114,8 +114,7 @@ def main():
                 print('Creating Makefile')
 
                 makeFileWrite = open('Makefile', 'w+')
-                makeFileWrite.write('''
-init:
+                makeFileWrite.write('''init:
 \tpip3 install -r requirements.txt
 
 clean:
@@ -345,7 +344,10 @@ More information here:
                 gitignoreWrite.write('*.DS_Store')
                 if isall or ispython:
                     gitignoreWrite.write('''
+# Hide virtualenv
 venv/
+
+# Hide compiled python files
 *.pyc
 __pycache__/''')
                 gitignoreWrite.close()
@@ -411,17 +413,23 @@ Report the failed test [here](issue link)!
 ''')
 
                 if licenseType == 1:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 2:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 3:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
 
@@ -429,7 +437,9 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
                     pass
 
                 else:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project's here: [LICENSE](LICENSE)''')
 
