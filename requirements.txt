@@ -9,7 +9,7 @@ keyring==21.1.0
 more-itertools==8.2.0
 pkginfo==1.5.0.1
 Pygments==2.5.2
-PyStarter==1.4.1
+PyStarter==1.4.4
 readme-renderer==24.0
 requests==2.22.0
 requests-toolbelt==0.9.1
