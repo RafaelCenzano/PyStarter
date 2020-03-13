@@ -114,15 +114,17 @@ def main():
                 print('Creating Makefile')
 
                 makeFileWrite = open('Makefile', 'w+')
-                makeFileWrite.write('''
-init:
-    pip3 install -r requirements.txt
+                makeFileWrite.write('''init:
+\tpip3 install -r requirements.txt
+
+clean:
+\tpystarter clean
 
 test:
-    add test command here
+\tpytest
 
-run:
-    python3 run.py''')
+run: clean
+\tpython3 run.py''')
                 makeFileWrite.close()
 
                 print('Makefile created\n')
@@ -342,7 +344,10 @@ More information here:
                 gitignoreWrite.write('*.DS_Store')
                 if isall or ispython:
                     gitignoreWrite.write('''
+# Hide virtualenv
 venv/
+
+# Hide compiled python files
 *.pyc
 __pycache__/''')
                 gitignoreWrite.close()
@@ -408,17 +413,23 @@ Report the failed test [here](issue link)!
 ''')
 
                 if licenseType == 1:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 2:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
 
                 elif licenseType == 3:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
 
@@ -426,7 +437,9 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
                     pass
 
                 else:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write('''
+
+## License
 
 This project's here: [LICENSE](LICENSE)''')
 
@@ -550,7 +563,7 @@ pip3 install pystarter
 
 
 def pystarterVersion():
-    return '1.4.2'
+    return '1.4.4'
 
 
 def pystarterCommands():
