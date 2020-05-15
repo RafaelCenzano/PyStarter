@@ -208,9 +208,13 @@ setup(
     # Classifiers help users find your project by categorizing it.
     classifiers=[
         # How mature is this project? Common values are
+        #   1 - Planning
+        #   2 - Pre-Alpha
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
+        #   6 - Mature
+        #   7 - Inactive
         'Development Status :: 3 - Alpha',
 
         # Indicate who your project is intended for
@@ -563,7 +567,7 @@ pip3 install pystarter
 
 
 def pystarterVersion():
-    return '1.4.4'
+    return '1.4.5'
 
 
 def pystarterCommands():
