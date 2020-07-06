@@ -124,9 +124,6 @@ def main():
 clean:
 \tpystarter clean
 
-test:
-\tpytest
-
 run: clean
 \tpython3 run.py''')
                 makeFileWrite.close()
