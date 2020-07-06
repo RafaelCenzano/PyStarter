@@ -1,6 +1,6 @@
 # PyStarter
 
-PyStarter starter provides an easy way to start a git or python projects with helpful file creation.
+[PyStarter](https://pypi.org/project/PyStarter/) starter provides an easy way to start a git or python projects with helpful file creation.
 
 ![Version](https://img.shields.io/pypi/v/PyStarter.svg)
 ![Supported python versions](https://img.shields.io/pypi/pyversions/PyStarter.svg)
