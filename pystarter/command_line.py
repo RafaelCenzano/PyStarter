@@ -41,7 +41,7 @@ def main():
             args = ['all']
 
         # Check the second argument before proceeding
-        if 'python' in args or 'git' in args or 'all' in args:
+        if 'python' in args or 'git' in args or 'all' in args or 'setup' in args:
             pass
         else:
             print('No valid arguments passed for create command')
@@ -65,6 +65,7 @@ def main():
         isgit = False
         isall = False
         ispython = False
+        issetup = False
 
         # Check arguments by looping through and checking
         for arguments in args:
@@ -79,6 +80,9 @@ def main():
 
             elif checkArg == 'all':
                 isall = True
+
+            elif checkArg == 'setup':
+                issetup = True
 
         if not isall and ispython and isgit:
             isall = True
@@ -151,7 +155,7 @@ run: clean
                 exit()
 
         # Create python setup file and readme.rst for setup file
-        if setup and isall or ispython:
+        if setup and issetup:
 
             try:
 
@@ -522,7 +526,9 @@ Report the failed test [here](issue link)!
 
 ## Authors
 
-* [**Author Name**](author link)''')
+* [**Author Name**](author link)
+
+''')
 
                 if licenseType == 1:
                     ReadmeMdWrite.write('''## License
@@ -567,7 +573,7 @@ pip3 install pystarter
 
 
 def pystarterVersion():
-    return '1.4.5'
+    return '1.5.0'
 
 
 def pystarterCommands():
@@ -581,7 +587,8 @@ option can be left blank
 Options you can use (do not use <> in command arguments):
     <git> for git only projects
     <python> for python only projects
-    <all> for both git and python projects
+    <all> for both git and python projects (setup.py not included)
+    <setup> to include a setup.py template
     or leave it blank for for projects with git and python
 
 pystarter clean
@@ -620,15 +627,16 @@ def cacheCleaner():
 def MITLicense():
     from datetime import datetime
     year = datetime.now().year
+    name = input('What is your name or your organization\'s name: ')
     mitLicense = ('''MIT License
 
-Copyright (c) {} [NAME GOES HERE]
+Copyright (c) {} {}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'''.format(str(year)))
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'''.format(str(year),name))
 
     return mitLicense
 
@@ -636,6 +644,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 def APACHELicense():
     from datetime import datetime
     year = datetime.now().year
+    name = input('What is your name or your organization\'s name: ')
     apacheLicense = ('''
                                  Apache License
                            Version 2.0, January 2004
@@ -825,7 +834,7 @@ def APACHELicense():
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright {} [NAME GOES HERE]
+   Copyright {} {}
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -837,7 +846,7 @@ def APACHELicense():
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
-   limitations under the License.'''.format(str(year)))
+   limitations under the License.'''.format(str(year),name))
 
     return apacheLicense
 
@@ -845,6 +854,7 @@ def APACHELicense():
 def GNULicense():
     from datetime import datetime
     year = datetime.now().year
+    name = input('What is your name or your organization\'s name: ')
     gnuLicense = ('''GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
@@ -1033,12 +1043,12 @@ END OF TERMS AND CONDITIONS
 
 If the program does terminal interaction, make it output a short notice like this when it starts in an interactive mode:
 
-Copyright (C) {} [YOUR NAME HERE]
+Copyright (C) {} {}
 This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type `show c' for details.
 The hypothetical commands show w' and show c' should show the appropriate parts of the General Public License. Of course, your program's commands might be different; for a GUI interface, you would use an "about box".
 
-You should also get your employer (if you work as a programmer) or school, if any, to sign a "copyright disclaimer" for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see https://www.gnu.org/licenses/.'''.format(str(year)))
+You should also get your employer (if you work as a programmer) or school, if any, to sign a "copyright disclaimer" for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see https://www.gnu.org/licenses/.'''.format(str(year),name))
 
     return gnuLicense

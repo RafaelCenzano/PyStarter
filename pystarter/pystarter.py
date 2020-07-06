@@ -1,5 +1,5 @@
 def pystarterVersion():
-    return '1.4.5'
+    return '1.5.0'
 
 
 def pystarterCommands():
@@ -13,7 +13,8 @@ option can be left blank
 Options you can use (do not use <> in command arguments):
     <git> for git only projects
     <python> for python only projects
-    <all> for both git and python projects
+    <all> for both git and python projects (setup.py not included)
+    <setup> to include a setup.py template
     or leave it blank for for projects with git and python
 
 pystarter clean
