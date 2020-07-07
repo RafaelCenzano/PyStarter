@@ -51,6 +51,7 @@ def main():
         # Check for files and directories for python
         setup = not path.isfile('setup.py')
         runFile = not path.isfile('run.py')
+        configFile = not path.isfile('config.py')
         makeFile = not path.isfile('Makefile')
         requirements = not path.isfile('requirements.txt')
 
@@ -111,6 +112,24 @@ def main():
                 print('Error creating run.py\n')
                 exit()
 
+        if configFile and isall or ispython:
+
+            try:
+
+                print('Creating config.py')
+
+                runPyWrite = open('config.py', 'w+')
+                runPyWrite.write('')
+                runPyWrite.close()
+
+                print('config.py created\n')
+
+            except BaseException:
+                print('Error creating config.py\n')
+                exit()
+
+
+        # Create Makefile
         if makeFile and isall or ispython:
 
             try:
@@ -332,7 +351,7 @@ More information here:
                     LicenseWrite.write(LICENSE)
                     LicenseWrite.close()
 
-                    print('Update fillers in LICENSE for your project\n')
+                    print('LICENSE created\n')
 
             except BaseException:
                 print('Error creating license\n')
@@ -556,6 +575,7 @@ This Readme was created with [pystarter](https://github.com/RafaelCenzano/PyStar
 pip3 install pystarter
 ```''')
                 ReadmeMdWrite.close()
+                print('README.md created\n')
 
             except BaseException:
                 print('Error creating README\n')
