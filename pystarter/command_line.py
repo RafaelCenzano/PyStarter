@@ -590,7 +590,7 @@ pip3 install pystarter
 
 
 def pystarterVersion():
-    return '1.5.0'
+    return '1.5.1'
 
 
 def pystarterCommands():
