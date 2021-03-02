@@ -582,9 +582,7 @@ pip3 install pystarter
                 sys.exit()
 
     else:
-        passedArgs = ''
-        for items in sys.argv[1:]:
-            passedArgs += items
+        passedArgs = ' '.join(sys.argv[1:])
         print('Command ' + passedArgs + ' not found.\n')
         print(pystarterCommands())
 
