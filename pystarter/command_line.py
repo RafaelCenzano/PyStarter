@@ -32,7 +32,7 @@ def main():
             from os import path
         except BaseException:
             print('Error with importing os\n')
-            exit()
+            sys.exit()
 
         # Find the second argument
         try:
@@ -46,7 +46,7 @@ def main():
         else:
             print('No valid arguments passed for create command')
             print(pystarterCommands())
-            exit()
+            sys.exit()
 
         # Check for files and directories for python
         setup = not path.isfile('setup.py')
@@ -110,7 +110,7 @@ def main():
 
             except BaseException:
                 print('Error creating run.py\n')
-                exit()
+                sys.exit()
 
         if configFile and isall or ispython:
 
@@ -126,7 +126,7 @@ def main():
 
             except BaseException:
                 print('Error creating config.py\n')
-                exit()
+                sys.exit()
 
 
         # Create Makefile
@@ -151,7 +151,7 @@ run: clean
 
             except BaseException:
                 print('Error creating Makefile\n')
-                exit()
+                sys.exit()
 
         # Create blank requirements.txt
         if requirements and isall or ispython:
@@ -168,7 +168,7 @@ run: clean
 
             except BaseException:
                 print('Error creating requirements.txt\n')
-                exit()
+                sys.exit()
 
         # Create python setup file and readme.rst for setup file
         if setup and issetup:
@@ -297,7 +297,7 @@ setup(
 
             except BaseException:
                 print('Error creating setup.py\n')
-                exit()
+                sys.exit()
 
         # Create license
         if license and isall or isgit:
@@ -355,7 +355,7 @@ More information here:
 
             except BaseException:
                 print('Error creating license\n')
-                exit()
+                sys.exit()
 
         # Create .gitignore
         if ignore and isall or isgit:
@@ -380,7 +380,7 @@ __pycache__/''')
 
             except BaseException:
                 print('Error creating .gitignore\n')
-                exit()
+                sys.exit()
 
         if README and isgit and not isall:
 
@@ -477,7 +477,7 @@ pip3 install pystarter
 
             except BaseException:
                 print('Error creating README\n')
-                exit()
+                sys.exit()
 
         elif README and isall:
 
@@ -579,7 +579,7 @@ pip3 install pystarter
 
             except BaseException:
                 print('Error creating README\n')
-                exit()
+                sys.exit()
 
     else:
         passedArgs = ''
