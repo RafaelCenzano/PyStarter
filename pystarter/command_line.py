@@ -11,11 +11,11 @@ def main():
         first_arg = None
 
     # Version command
-    if first_arg == "--version" or first_arg == "-v":
+    if first_arg in ('--version', '-v', '-V'):
         print(pystarterVersion())
 
     # Help command
-    elif first_arg == "--help" or first_arg == "-h":
+    elif first_arg in ('--help', '-h', '-H'):
         print(pystarterCommands())
 
     # Python Cache cleaner
