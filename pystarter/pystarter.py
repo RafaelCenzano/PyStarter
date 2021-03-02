@@ -1,9 +1,9 @@
 def pystarterVersion():
-    return '1.5.1'
+    return "1.5.1"
 
 
 def pystarterCommands():
-    return ('''
+    return """
 Command list:
 
 pystarter create <option>
@@ -20,4 +20,4 @@ Options you can use (do not use <> in command arguments):
 pystarter clean
 
 Clean out pyc files and __pycache__ files
-           ''')
+           """

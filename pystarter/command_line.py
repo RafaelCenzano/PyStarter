@@ -11,56 +11,58 @@ def main():
         first_arg = None
 
     # Version command
-    if first_arg == '--version' or first_arg == '-v':
+    if first_arg == "--version" or first_arg == "-v":
         print(pystarterVersion())
 
     # Help command
-    elif first_arg == '--help' or first_arg == '-h':
+    elif first_arg == "--help" or first_arg == "-h":
         print(pystarterCommands())
 
     # Python Cache cleaner
-    elif first_arg == 'clean':
-        print('Cleaning out .pyc files and __pycache__ folders')
+    elif first_arg == "clean":
+        print("Cleaning out .pyc files and __pycache__ folders")
         cacheCleaner()
-        print('Project cleaned')
+        print("Project cleaned")
 
     # Main command to create files and venvs
-    elif first_arg == 'create':
+    elif first_arg == "create":
 
         # import os
         try:
             from os import path
         except BaseException:
-            print('Error with importing os\n')
+            print("Error with importing os\n")
             exit()
 
         # Find the second argument
         try:
             args = sys.argv[2:]
         except IndexError:
-            args = ['all']
+            args = ["all"]
 
         # Check the second argument before proceeding
-        if 'python' in args or 'git' in args or 'all' in args or 'setup' in args:
+        if "python" in args or "git" in args or "all" in args or "setup" in args:
             pass
         else:
-            print('No valid arguments passed for create command')
+            print("No valid arguments passed for create command")
             print(pystarterCommands())
             exit()
 
         # Check for files and directories for python
-        setup = not path.isfile('setup.py')
-        runFile = not path.isfile('run.py')
-        configFile = not path.isfile('config.py')
-        makeFile = not path.isfile('Makefile')
-        requirements = not path.isfile('requirements.txt')
-
+        setup = not path.isfile("setup.py")
+        runFile = not path.isfile("run.py")
+        configFile = not path.isfile("config.py")
+        makeFile = not path.isfile("Makefile")
+        requirements = not path.isfile("requirements.txt")
 
         # Check for files and directories for git
-        ignore = not path.isfile('.gitignore')
-        README = not path.isfile('README.md') and not path.isfile(
-            'README.rst') and not path.isfile('README.txt')
-        license = not path.isfile('LICENSE') and not path.isfile('LICENSE.txt')
+        ignore = not path.isfile(".gitignore")
+        README = (
+            not path.isfile("README.md")
+            and not path.isfile("README.rst")
+            and not path.isfile("README.txt")
+        )
+        license = not path.isfile("LICENSE") and not path.isfile("LICENSE.txt")
 
         # Check for what the second arg is
         isgit = False
@@ -73,16 +75,16 @@ def main():
 
             checkArg = arguments.lower()
 
-            if checkArg == 'python':
+            if checkArg == "python":
                 ispython = True
 
-            elif checkArg == 'git':
+            elif checkArg == "git":
                 isgit = True
 
-            elif checkArg == 'all':
+            elif checkArg == "all":
                 isall = True
 
-            elif checkArg == 'setup':
+            elif checkArg == "setup":
                 issetup = True
 
         if not isall and ispython and isgit:
@@ -91,66 +93,67 @@ def main():
         # Save license type
         licenseType = 0
 
-        '''
+        """
         Python file creation
-        '''
+        """
 
         # Create run.py
         if runFile and isall or ispython:
 
             try:
 
-                print('Creating run.py')
+                print("Creating run.py")
 
-                runPyWrite = open('run.py', 'w+')
-                runPyWrite.write('')
+                runPyWrite = open("run.py", "w+")
+                runPyWrite.write("")
                 runPyWrite.close()
 
-                print('run.py created\n')
+                print("run.py created\n")
 
             except BaseException:
-                print('Error creating run.py\n')
+                print("Error creating run.py\n")
                 exit()
 
         if configFile and isall or ispython:
 
             try:
 
-                print('Creating config.py')
+                print("Creating config.py")
 
-                runPyWrite = open('config.py', 'w+')
-                runPyWrite.write('')
+                runPyWrite = open("config.py", "w+")
+                runPyWrite.write("")
                 runPyWrite.close()
 
-                print('config.py created\n')
+                print("config.py created\n")
 
             except BaseException:
-                print('Error creating config.py\n')
+                print("Error creating config.py\n")
                 exit()
-
 
         # Create Makefile
         if makeFile and isall or ispython:
 
             try:
 
-                print('Creating Makefile')
+                print("Creating Makefile")
 
-                makeFileWrite = open('Makefile', 'w+')
-                makeFileWrite.write('''init:
+                makeFileWrite = open("Makefile", "w+")
+                makeFileWrite.write(
+                    """init:
 \tpip3 install -r requirements.txt
 
 clean:
 \tpystarter clean
 
 run: clean
-\tpython3 run.py''')
+\tpython3 run.py"""
+                )
                 makeFileWrite.close()
 
-                print('Makefile created\n')
+                print("Makefile created\n")
 
             except BaseException:
-                print('Error creating Makefile\n')
+                print("Error creating Makefile\n")
                 exit()
 
         # Create blank requirements.txt
@@ -158,16 +161,16 @@ run: clean
 
             try:
 
-                print('Creating requirements.txt')
+                print("Creating requirements.txt")
 
-                requirementsTxtWrite = open('requirements.txt', 'w+')
-                requirementsTxtWrite.write('')
+                requirementsTxtWrite = open("requirements.txt", "w+")
+                requirementsTxtWrite.write("")
                 requirementsTxtWrite.close()
 
-                print('requirements.txt created\n')
+                print("requirements.txt created\n")
 
             except BaseException:
-                print('Error creating requirements.txt\n')
+                print("Error creating requirements.txt\n")
                 exit()
 
         # Create python setup file and readme.rst for setup file
@@ -175,11 +178,11 @@ run: clean
 
             try:
 
-                print('Creating setup.py')
+                print("Creating setup.py")
 
-                setupPyWrite = open('setup.py', 'w+')
+                setupPyWrite = open("setup.py", "w+")
                 setupPyWrite.write(
-                    '''from setuptools import setup, find_packages
+                    """from setuptools import setup, find_packages
 from os import getcwd, path
 
 currentDir = getcwd()
@@ -288,15 +291,17 @@ setup(
 # setup.py generated using PyStarter
 # https://pypi.org/project/PyStarter/
 # pip3 install pystarter
-# The above message can be deleted, it does not effect the python code.''')
+# The above message can be deleted, it does not effect the python code."""
+                )
 
                 setupPyWrite.close()
 
                 print(
-                    'setup.py created\n    Update fillers in setup.py for your project\n')
+                    "setup.py created\n    Update fillers in setup.py for your project\n"
+                )
 
             except BaseException:
-                print('Error creating setup.py\n')
+                print("Error creating setup.py\n")
                 exit()
 
         # Create license
@@ -304,13 +309,14 @@ setup(
 
             try:
 
-                print('Creating LICENSE')
+                print("Creating LICENSE")
 
-                LICENSE = ''
+                LICENSE = ""
 
                 while True:
 
-                    print('''
+                    print(
+                        """
 LICENSE options:
   1. Apache License 2.0
   2. MIT License
@@ -318,43 +324,49 @@ LICENSE options:
 
 More information here:
   https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project
-                          ''')
+                          """
+                    )
 
                     whichlicense = input(
-                        'What LICENSE would you like for you project (Choose the number or write out the whole name. Write \'none\' if you don\'t want a license) : ').lower()
+                        "What LICENSE would you like for you project (Choose the number or write out the whole name. Write 'none' if you don't want a license) : "
+                    ).lower()
 
-                    if '1' in whichlicense or 'apache' in whichlicense:
+                    if "1" in whichlicense or "apache" in whichlicense:
                         licenseType = 1
                         LICENSE = APACHELicense()
                         break
 
-                    elif '2' in whichlicense or 'mit' in whichlicense:
+                    elif "2" in whichlicense or "mit" in whichlicense:
                         licenseType = 2
                         LICENSE = MITLicense()
                         break
 
-                    elif '3' in whichlicense or 'gnu' in whichlicense or 'general public license' in whichlicense:
+                    elif (
+                        "3" in whichlicense
+                        or "gnu" in whichlicense
+                        or "general public license" in whichlicense
+                    ):
                         licenseType = 3
                         LICENSE = GNULicense()
                         break
 
-                    elif 'none' in whichlicense:
+                    elif "none" in whichlicense:
                         licenseType = 4
                         break
 
                     else:
-                        print('\n\n' + whichlicense + ' is not an option\n\n')
+                        print("\n\n" + whichlicense + " is not an option\n\n")
 
                 if licenseType is not 4:
 
-                    LicenseWrite = open('LICENSE', 'w+')
+                    LicenseWrite = open("LICENSE", "w+")
                     LicenseWrite.write(LICENSE)
                     LicenseWrite.close()
 
-                    print('LICENSE created\n')
+                    print("LICENSE created\n")
 
             except BaseException:
-                print('Error creating license\n')
+                print("Error creating license\n")
                 exit()
 
         # Create .gitignore
@@ -362,34 +374,37 @@ More information here:
 
             try:
 
-                print('Creating .gitignore')
+                print("Creating .gitignore")
 
-                gitignoreWrite = open('.gitignore', 'w+')
-                gitignoreWrite.write('*.DS_Store')
+                gitignoreWrite = open(".gitignore", "w+")
+                gitignoreWrite.write("*.DS_Store")
                 if isall or ispython:
-                    gitignoreWrite.write('''
+                    gitignoreWrite.write(
+                        """
 # Hide virtualenv
 venv/
 
 # Hide compiled python files
 *.pyc
-__pycache__/''')
+__pycache__/"""
+                    )
                 gitignoreWrite.close()
 
-                print('.gitignore created\n')
+                print(".gitignore created\n")
 
             except BaseException:
-                print('Error creating .gitignore\n')
+                print("Error creating .gitignore\n")
                 exit()
 
         if README and isgit and not isall:
 
             try:
 
-                print('Creating README.md')
+                print("Creating README.md")
 
-                ReadmeMdWrite = open('README.md', 'w+')
-                ReadmeMdWrite.write('''# Project
+                ReadmeMdWrite = open("README.md", "w+")
+                ReadmeMdWrite.write(
+                    """# Project
 
 Project Description
 
@@ -434,59 +449,71 @@ Report the failed test [here](issue link)!
 
 * [**Author Name**](author link)
 
-''')
+"""
+                )
 
                 if licenseType == 1:
-                    ReadmeMdWrite.write('''
+                    ReadmeMdWrite.write(
+                        """
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details"""
+                    )
 
                 elif licenseType == 2:
-                    ReadmeMdWrite.write('''
+                    ReadmeMdWrite.write(
+                        """
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details"""
+                    )
 
                 elif licenseType == 3:
-                    ReadmeMdWrite.write('''
+                    ReadmeMdWrite.write(
+                        """
 
 ## License
 
-This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details"""
+                    )
 
                 elif licenseType == 4:
                     pass
 
                 else:
-                    ReadmeMdWrite.write('''
+                    ReadmeMdWrite.write(
+                        """
 
 ## License
 
-This project's here: [LICENSE](LICENSE)''')
+This project's here: [LICENSE](LICENSE)"""
+                    )
 
-                ReadmeMdWrite.write('''
+                ReadmeMdWrite.write(
+                    """
 This Readme was created with pystarter
 
 ```
 pip3 install pystarter
-```''')
+```"""
+                )
                 ReadmeMdWrite.close()
 
             except BaseException:
-                print('Error creating README\n')
+                print("Error creating README\n")
                 exit()
 
         elif README and isall:
 
             try:
 
-                print('Creating README.md')
+                print("Creating README.md")
 
-                ReadmeMdWrite = open('README.md', 'w+')
-                ReadmeMdWrite.write('''# Project
+                ReadmeMdWrite = open("README.md", "w+")
+                ReadmeMdWrite.write(
+                    """# Project
 
 Project Description
 
@@ -544,55 +571,66 @@ Report the failed test [here](issue link)!
 
 * [**Author Name**](author link)
 
-''')
+"""
+                )
 
                 if licenseType == 1:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write(
+                        """## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details''')
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details"""
+                    )
 
                 elif licenseType == 2:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write(
+                        """## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details''')
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details"""
+                    )
 
                 elif licenseType == 3:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write(
+                        """## License
 
-This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details''')
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details"""
+                    )
 
                 else:
-                    ReadmeMdWrite.write('''## License
+                    ReadmeMdWrite.write(
+                        """## License
 
-This project's license here: [LICENSE](LICENSE)''')
+This project's license here: [LICENSE](LICENSE)"""
+                    )
 
-                ReadmeMdWrite.write('''
+                ReadmeMdWrite.write(
+                    """
 
 
 This Readme was created with [pystarter](https://github.com/RafaelCenzano/PyStarter)
 
 ```
 pip3 install pystarter
-```''')
+```"""
+                )
                 ReadmeMdWrite.close()
-                print('README.md created\n')
+                print("README.md created\n")
 
             except BaseException:
-                print('Error creating README\n')
+                print("Error creating README\n")
                 exit()
 
     else:
-        passedArgs = ' '.join(sys.argv[1:])
-        print('Command ' + passedArgs + ' not found.\n')
+        passedArgs = " ".join(sys.argv[1:])
+        print("Command " + passedArgs + " not found.\n")
         print(pystarterCommands())
 
 
 def pystarterVersion():
-    return '1.5.1'
+    return "1.5.1"
 
 
 def pystarterCommands():
-    return ('''
+    return """
 Command list:
 
 pystarter create <option>
@@ -609,7 +647,7 @@ Options you can use (do not use <> in command arguments):
 pystarter clean
 
 Clean out pyc files and __pycache__ files
-           ''')
+           """
 
 
 def cacheCleaner():
@@ -620,30 +658,36 @@ def cacheCleaner():
     pathsToRemoveDirs = []
     pathToFolder = os.getcwd()
 
-    for (root,dirs,files) in os.walk('.', topdown=True):
+    for (root, dirs, files) in os.walk(".", topdown=True):
         dirsChecking = root[2:]
-        if root[2:6] != 'venv':
+        if root[2:6] != "venv":
             for directories in dirs:
-                if '__pycache__' == directories:
-                    pathsToRemoveDirs.append(os.path.join(pathToFolder,dirsChecking,directories))
+                if "__pycache__" == directories:
+                    pathsToRemoveDirs.append(
+                        os.path.join(pathToFolder, dirsChecking, directories)
+                    )
             for f in files:
                 name, ext = os.path.splitext(f)
-                if '.pyc' == ext:
-                    pathsToRemoveFiles.append(os.path.join(pathToFolder,dirsChecking,f))
+                if ".pyc" == ext:
+                    pathsToRemoveFiles.append(
+                        os.path.join(pathToFolder, dirsChecking, f)
+                    )
     for paths in pathsToRemoveFiles:
         if os.path.exists(paths):
-            print('deleting file: ' + paths)
+            print("deleting file: " + paths)
             os.remove(paths)
     for paths in pathsToRemoveDirs:
         if os.path.exists(paths):
-            print('deleting folder:' + paths)
+            print("deleting folder:" + paths)
             shutil.rmtree(paths)
+
 
 def MITLicense():
     from datetime import datetime
+
     year = datetime.now().year
-    name = input('What is your name or your organization\'s name: ')
-    mitLicense = ('''MIT License
+    name = input("What is your name or your organization's name: ")
+    mitLicense = """MIT License
 
 Copyright (c) {} {}
 
@@ -651,16 +695,19 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'''.format(str(year),name))
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.""".format(
+        str(year), name
+    )
 
     return mitLicense
 
 
 def APACHELicense():
     from datetime import datetime
+
     year = datetime.now().year
-    name = input('What is your name or your organization\'s name: ')
-    apacheLicense = ('''
+    name = input("What is your name or your organization's name: ")
+    apacheLicense = """
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -861,16 +908,19 @@ def APACHELicense():
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
-   limitations under the License.'''.format(str(year),name))
+   limitations under the License.""".format(
+        str(year), name
+    )
 
     return apacheLicense
 
 
 def GNULicense():
     from datetime import datetime
+
     year = datetime.now().year
-    name = input('What is your name or your organization\'s name: ')
-    gnuLicense = ('''GNU GENERAL PUBLIC LICENSE
+    name = input("What is your name or your organization's name: ")
+    gnuLicense = """GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
 Copyright © 2007 Free Software Foundation, Inc. <https://fsf.org/>
@@ -1064,6 +1114,8 @@ This is free software, and you are welcome to redistribute it
 under certain conditions; type `show c' for details.
 The hypothetical commands show w' and show c' should show the appropriate parts of the General Public License. Of course, your program's commands might be different; for a GUI interface, you would use an "about box".
 
-You should also get your employer (if you work as a programmer) or school, if any, to sign a "copyright disclaimer" for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see https://www.gnu.org/licenses/.'''.format(str(year),name))
+You should also get your employer (if you work as a programmer) or school, if any, to sign a "copyright disclaimer" for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see https://www.gnu.org/licenses/.""".format(
+        str(year), name
+    )
 
     return gnuLicense
