@@ -336,12 +336,12 @@ More information here:
                         LICENSE = APACHELicense()
                         break
 
-                    elif "2" in whichlicense or "mit" in whichlicense:
+                    if "2" in whichlicense or "mit" in whichlicense:
                         licenseType = 2
                         LICENSE = MITLicense()
                         break
 
-                    elif (
+                    if (
                         "3" in whichlicense
                         or "gnu" in whichlicense
                         or "general public license" in whichlicense
@@ -350,12 +350,10 @@ More information here:
                         LICENSE = GNULicense()
                         break
 
-                    elif "none" in whichlicense:
+                    if "none" in whichlicense:
                         licenseType = 4
                         break
-
-                    else:
-                        print("\n\n" + whichlicense + " is not an option\n\n")
+                    print("\n\n" + whichlicense + " is not an option\n\n")
 
                 if licenseType is not 4:
 
