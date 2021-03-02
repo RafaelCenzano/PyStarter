@@ -393,13 +393,8 @@ __pycache__/"""
                 print(".gitignore created\n")
 
             except BaseException:
-<<<<<<< HEAD
-                print("Error creating .gitignore\n")
-                exit()
-=======
                 print('Error creating .gitignore\n')
                 sys.exit()
->>>>>>> fbbe90d36fd7b47d71a62ec9eacba4f7f8ecdb5d
 
         if README and isgit and not isall:
 
