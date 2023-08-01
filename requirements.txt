@@ -9,7 +9,7 @@ keyring==21.2.1
 more-itertools==8.2.0
 packaging==20.3
 pkginfo==1.5.0.1
-Pygments==2.7.4
+Pygments==2.15.0
 pyparsing==2.4.7
 PyStarter==1.4.4
 readme-renderer==26.0
